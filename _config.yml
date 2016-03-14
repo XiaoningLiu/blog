@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: "Let's run for a walk!"
-subtitle:
-description:
+title: "刘晓宁的博客"
+subtitle: "Let's run for a walk!"
+description: "归纳，整理，创新 刘晓宁的博客 程序员健康指南 思考 反思"
 author: 刘晓宁
 language: zh-CN
 timezone:

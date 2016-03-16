@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="刘晓宁的博客">
 <meta property="og:description" content="常见算法复杂度；复杂度；算法；">
 <meta property="og:image" content="http://img4.imgtn.bdimg.com/it/u=3251662289,3984241275&amp;fm=21&amp;gp=0.jpg">
-<meta property="og:updated_time" content="2016-03-16T03:54:56.000Z">
+<meta property="og:updated_time" content="2016-03-16T10:44:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见算法复杂度">
 <meta name="twitter:description" content="常见算法复杂度；复杂度；算法；">
@@ -152,6 +152,11 @@ var _hmt = _hmt || [];
 <p>一共n个点，每个点都要访问一遍，每个点都要读取邻接矩阵获得子节点，需要n次，因此是n*n。</p>
 <p>使用<strong>邻接表</strong>存储图：O(|n| + |e|)</p>
 <p>注意：在树中，e = n - 1，因为只有根节点没有上面的边，其他点都有。所以使用邻接表或者tree的结构，时间复杂度是 O(n)</p>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>采用Partition操作，复杂度是<code>TreeHight * N</code>，在树的<strong>每一层</strong>的parition操作中，都要有N次遍历操作。</p>
+<p>最理想情况下，即每次partition都在中间位置划分，则树的高度是log(n)，最坏的情况则是树高趋于N。</p>
+<p>LeetCode有一个关于快速排序的题目(<a href="https://leetcode.com/problems/sort-list/" target="_blank" rel="external">SortList</a>)，其中的一个测试用例包含大量的重复数字。而代码默认没有优化的话，这种情况下会很糟糕。</p>
+<p>可以针对这种情况进行优化，在Partition的过程中将选定的PartitionValue的重复项都位于中间，返回两个partition点，如下面两端的5。然后剩下仅对左右两个部分进行运算即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 2 4 2 1 | 5 5 5 5 5 5 5 | 7 8 9</span><br><span class="line">            -           -</span><br></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
@@ -159,7 +164,7 @@ var _hmt = _hmt || [];
 
 
 
-    <a data-url="http://xiaoningliu.com/2016/03/16/常见算法复杂度/" data-id="cilubm8ym000bsbcl7ubrt9dp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/2016/03/16/常见算法复杂度/" data-id="cilupfwsb000bphclbwpb4k7f" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

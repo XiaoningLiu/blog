@@ -3,23 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Linux快速笔记 | 刘晓宁的博客</title>
+    <title>常见算法复杂度 | 刘晓宁的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="面试,Linux,笔记,备忘" />
+        <meta name="keywords" content="面试,备忘,算法,复杂度" />
     
-    <meta name="description" content="Linux快速笔记；Linux常用命令；Linux常用目录位置；">
+    <meta name="description" content="常见算法复杂度；复杂度；算法；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux快速笔记">
-<meta property="og:url" content="http://xiaoningliu.com/2016/03/15/Linux快速笔记/index.html">
+<meta property="og:title" content="常见算法复杂度">
+<meta property="og:url" content="http://xiaoningliu.com/2016/03/16/常见算法复杂度/index.html">
 <meta property="og:site_name" content="刘晓宁的博客">
-<meta property="og:description" content="Linux快速笔记；Linux常用命令；Linux常用目录位置；">
-<meta property="og:image" content="http://www.6188.com/upload_6188s/Small_paper/xitong/3174/s800/linux_014.jpg">
-<meta property="og:updated_time" content="2016-03-15T15:22:42.000Z">
+<meta property="og:description" content="常见算法复杂度；复杂度；算法；">
+<meta property="og:image" content="http://img4.imgtn.bdimg.com/it/u=3251662289,3984241275&amp;fm=21&amp;gp=0.jpg">
+<meta property="og:updated_time" content="2016-03-16T03:54:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux快速笔记">
-<meta name="twitter:description" content="Linux快速笔记；Linux常用命令；Linux常用目录位置；">
-<meta name="twitter:image" content="http://www.6188.com/upload_6188s/Small_paper/xitong/3174/s800/linux_014.jpg">
+<meta name="twitter:title" content="常见算法复杂度">
+<meta name="twitter:description" content="常见算法复杂度；复杂度；算法；">
+<meta name="twitter:image" content="http://img4.imgtn.bdimg.com/it/u=3251662289,3984241275&amp;fm=21&amp;gp=0.jpg">
     
 
     
@@ -119,98 +119,39 @@ var _hmt = _hmt || [];
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Linux/">Linux</a>
+    <a class="page-title-link" href="/categories/算法/">算法</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-Linux快速笔记" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-常见算法复杂度" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Linux快速笔记
+        常见算法复杂度
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/03/15/Linux快速笔记/" class="article-date">
-    <time datetime="2016-03-15T15:19:29.000Z" itemprop="datePublished">2016-03-15</time>
+            <a href="/2016/03/16/常见算法复杂度/" class="article-date">
+    <time datetime="2016-03-16T03:47:46.000Z" itemprop="datePublished">2016-03-16</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/备忘/">备忘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/备忘/">备忘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/复杂度/">复杂度</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h3 id="Linux快速笔记"><a href="#Linux快速笔记" class="headerlink" title="Linux快速笔记"></a>Linux快速笔记</h3><p><img src="http://www.6188.com/upload_6188s/Small_paper/xitong/3174/s800/linux_014.jpg" alt="Linux"></p>
-<p><code>ln -s source linkName</code></p>
-<p>建立软链接，<strong>-s</strong> 是symbolic link的意思，很多时候可能会认不清source和linkName的顺序，这时候可以把<strong>-s</strong> 当做”source”的意思。</p>
-<p><code>chown -R git:git folder</code></p>
-<p>设置一堆文件的所有者，比如服务器apache的www目录，要给www用户相应的权限。</p>
-<p><code>chmod -R 777 foder</code></p>
-<p>设置一堆文件的权限，比如.ssh中保存的authorized_keys文件；7代表二进制的111，分别代表读、写以及执行。</p>
-<p><code>ls -lh</code></p>
-<p>相当于ll</p>
-<p><code>tail -f file</code></p>
-<p>持续查看文件结尾</p>
-<p><code>which</code></p>
-<p>定位可执行文件位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alias &apos;ll=ls -hl&apos;`</span><br><span class="line">alias</span><br></pre></td></tr></table></figure>
-<p>查看或设置命令别名</p>
-<p><code>locate php.ini</code></p>
-<p>快速定位文件，尤其是配置文件</p>
-<p><code>grep</code></p>
-<p>快速文本朝找命令</p>
-<p><code>awk &#39;{print $1}&#39;</code></p>
-<p>按照分隔符分割每一行字符串并输出，默认分隔符是空格与TAB</p>
-<p><code>scp -r /path/filename username@servername:/path -p 22</code></p>
-<p>命令中服务器路径和本地路径可以交换</p>
-<p><code>tar</code></p>
-<p>解压：tar -x(必有，代表解压; c 代表压缩)z(代表gzip格式; j refers to bz2)v(可选，输出信息)f(必有，选择被解压文件) file.tar.gz </p>
-<p><code>unzip xxx.zip -d newfolder</code></p>
-<p>zip解压缩</p>
-<p><code>netstat -t(tcp)u(udp)n(number)p(program name)l(listen)</code></p>
-<p>netstat -l(listening or a refers to all)t(tcp or u refers to udp)p(program)<br>netstat -n(using number format for ip)e(extend info)t(tcp)                    </p>
-<p><code>find /folder -name fileName [-type f]</code></p>
-<p>搜索文件</p>
-<p><code>wc -l</code></p>
-<p>find /folder -type f -name fileName [-maxdepth 0] | wc -l #文件数量</p>
-<p><code>file</code></p>
-<p>return file type, x64 etc.</p>
-<p><code>history</code></p>
-<p>命令操作历史</p>
-<p><code>last</code></p>
-<p>用户登录历史</p>
-<p><code>env</code></p>
-<p>env | grep ORACLE</p>
-<p><code>uname -a</code></p>
-<p>查看系统信息</p>
-<p><code>ps -ef(every process) | grep xxx</code></p>
-<p>查看进程</p>
-<p><code>fdisk -l</code></p>
-<p>查看所有可用于挂载的磁盘</p>
-<p><code>fdisk /dev/xvdb</code></p>
-<p>为这个磁盘建立分区表（注意：每个物理盘需要先在第一个sector建立分区表，然后每个分区进行格式化，然后挂载使用）这个命令结束后，硬盘“/dev/xvdb”会变成几个分区”/dev/xvdb1 …”</p>
-<p><code>df -h</code></p>
-<p>查看磁盘挂载情况，磁盘使用率</p>
-<p><code>du -h --max-depth=1 /folder_path</code> </p>
-<p>查看文件夹大小</p>
-<p><code>du -sh /folder</code> </p>
-<p>查看仅指定文件夹大小</p>
-<p><code>mount -t vfat /dev/XXX /folder</code></p>
-<p>挂载需提前创建目标目录</p>
-<h4 id="Linux常用目录"><a href="#Linux常用目录" class="headerlink" title="Linux常用目录"></a>Linux常用目录</h4><p>cat /etc/issue 查看系统版本</p>
-<p>/etc/ssh/sshd_config 修改服务器ssh端口号</p>
-<p>/etc/hosts hosts</p>
-<p>/etc/hostname hostname // command</p>
-<p>/etc/network/interfaces 修改网络配置 </p>
-<p>/etc/resolv.conf nameserver 202.96.128.86</p>
-<p>/etc/init.d/network restart</p>
-<p>/etc/issue 系统版本号</p>
-<p>/etc/passwd 用户列表以及登陆shell设置</p>
+            <h3 id="常见算法复杂度"><a href="#常见算法复杂度" class="headerlink" title="常见算法复杂度"></a>常见算法复杂度</h3><p><img src="http://img4.imgtn.bdimg.com/it/u=3251662289,3984241275&amp;fm=21&amp;gp=0.jpg" alt="算法复杂度"></p>
+<p><code>常见算法复杂度，持续整理中</code></p>
+<h4 id="深度优先搜索-DFS-与广度优先搜索-BFS"><a href="#深度优先搜索-DFS-与广度优先搜索-BFS" class="headerlink" title="深度优先搜索(DFS)与广度优先搜索(BFS)"></a>深度优先搜索(DFS)与广度优先搜索(BFS)</h4><p>这两个算法可以用于图也可以用于树，用于树的情况往往会简单。</p>
+<p>使用<strong>邻接矩阵</strong>存储图: O(n^2)</p>
+<p>一共n个点，每个点都要访问一遍，每个点都要读取邻接矩阵获得子节点，需要n次，因此是n*n。</p>
+<p>使用<strong>邻接表</strong>存储图：O(|n| + |e|)</p>
+<p>注意：在树中，e = n - 1，因为只有根节点没有上面的边，其他点都有。所以使用邻接表或者tree的结构，时间复杂度是 O(n)</p>
 
         </div>
         <footer class="article-footer">
@@ -218,7 +159,7 @@ var _hmt = _hmt || [];
 
 
 
-    <a data-url="http://xiaoningliu.com/2016/03/15/Linux快速笔记/" data-id="ciltkixvl0007t3clj8f9ys5i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/2016/03/16/常见算法复杂度/" data-id="cilube69i0000r0clkumltrja" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -285,7 +226,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/15/Linux快速笔记/" data-title="Linux快速笔记" data-url="http://xiaoningliu.com/2016/03/15/Linux快速笔记/"></div>
+    <div class="ds-thread" data-thread-key="2016/03/16/常见算法复杂度/" data-title="常见算法复杂度" data-url="http://xiaoningliu.com/2016/03/16/常见算法复杂度/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -389,20 +330,10 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/03/16/常见算法复杂度/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            常见算法复杂度
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2016/03/15/C_CPP文件大小/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/03/15/Linux快速笔记/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">C/C++检查文件大小</p>
+        <p class="article-nav-title">Linux快速笔记</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     

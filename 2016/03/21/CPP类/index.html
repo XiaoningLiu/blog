@@ -14,12 +14,12 @@
 <meta property="og:url" content="http://xiaoningliu.com/2016/03/21/CPP类/index.html">
 <meta property="og:site_name" content="刘晓宁的博客">
 <meta property="og:description" content="C++类相关要点，构造函数，重载函数">
-<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png">
-<meta property="og:updated_time" content="2016-03-21T04:50:13.000Z">
+<meta property="og:image" content="http://image.coolapk.com/apk_logo/2014/1113/257251_1415867697_4166.png">
+<meta property="og:updated_time" content="2016-03-21T04:52:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++类相关要点">
 <meta name="twitter:description" content="C++类相关要点，构造函数，重载函数">
-<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png">
+<meta name="twitter:image" content="http://image.coolapk.com/apk_logo/2014/1113/257251_1415867697_4166.png">
     
 
     
@@ -145,7 +145,7 @@ var _hmt = _hmt || [];
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="C-类相关要点"><a href="#C-类相关要点" class="headerlink" title="C++类相关要点"></a>C++类相关要点</h1><p><img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png" alt="C++类"></p>
+            <h1 id="C-类相关要点"><a href="#C-类相关要点" class="headerlink" title="C++类相关要点"></a>C++类相关要点</h1><p><img src="http://image.coolapk.com/apk_logo/2014/1113/257251_1415867697_4166.png" alt="C++类"></p>
 <h2 id="空间"><a href="#空间" class="headerlink" title="空间"></a>空间</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> a&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> b&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> c:<span class="keyword">public</span> a</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> d:<span class="keyword">public</span> b,<span class="keyword">public</span> c&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// g++ class.cpp -m32</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(a)"</span>&lt;&lt;<span class="keyword">sizeof</span>(a)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 1byte</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(b)"</span>&lt;&lt;<span class="keyword">sizeof</span>(b)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 1byte</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(c)"</span>&lt;&lt;<span class="keyword">sizeof</span>(c)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 包含虚函数指针4bytes</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(d)"</span>&lt;&lt;<span class="keyword">sizeof</span>(d)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 包含c的虚函数指针4bytes</span></span><br></pre></td></tr></table></figure>
 <p>使用32bit编译，<strong>结果如下：</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(a)<span class="number">1</span></span><br><span class="line"><span class="keyword">sizeof</span>(b)<span class="number">1</span></span><br><span class="line"><span class="keyword">sizeof</span>(c)<span class="number">8</span></span><br><span class="line"><span class="keyword">sizeof</span>(d)<span class="number">8</span></span><br></pre></td></tr></table></figure>
@@ -355,7 +355,7 @@ var _hmt = _hmt || [];
                             <a href="/2016/03/21/CPP类/" class="thumbnail">
     
     
-        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png)" alt="C++类相关要点" class="thumbnail-image"></span>
+        <span style="background-image:url(http://image.coolapk.com/apk_logo/2014/1113/257251_1415867697_4166.png)" alt="C++类相关要点" class="thumbnail-image"></span>
     
     
 </a>

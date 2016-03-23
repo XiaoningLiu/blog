@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="刘晓宁的博客">
 <meta property="og:description" content="常见算法复杂度；复杂度；算法；树转换为二叉树">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png">
-<meta property="og:updated_time" content="2016-03-17T02:38:40.000Z">
+<meta property="og:updated_time" content="2016-03-17T06:52:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树的相关算法以及树转换为二叉树">
 <meta name="twitter:description" content="常见算法复杂度；复杂度；算法；树转换为二叉树">
@@ -154,6 +154,8 @@ var _hmt = _hmt || [];
 <p>二叉树的基础上，树的每一行都是满的(2^(k-1)个节点在第k行)，除了最后一行。最后一行的节点从左到右是满的。</p>
 <p><strong>满二叉树</strong></p>
 <p>二叉树的基础上，树的每一行都是满的(2^(k-1)个节点在第k行)。</p>
+<p><strong>平衡二叉树</strong></p>
+<p>二叉树中，每个节点左右两个子树的高度差不超过1.</p>
 <h2 id="树转换为二叉树"><a href="#树转换为二叉树" class="headerlink" title="树转换为二叉树"></a>树转换为二叉树</h2><p>很简单，每个节点的最左边的儿子还是儿子，其他儿子变成这个儿子的孙子、曾孙子等，可以递归进行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">  int val;</span><br><span class="line">  int childrenNum;</span><br><span class="line">  Node** children;</span><br><span class="line">  void addChild(Node* n)</span><br><span class="line">  &#123;</span><br><span class="line">    children[childrenNum++] = n;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void transfer(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">  if (root == NULL)</span><br><span class="line">    return;</span><br><span class="line">    </span><br><span class="line">  for (int i = 0; i &lt; root-&gt;childrenNum; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    transfer(root-&gt;children[i]); // 注意：必须先执行子节点的变换</span><br><span class="line">    if (i != 0)</span><br><span class="line">      root-&gt;children[i - 1]-&gt;addChild(root-&gt;children[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  root-&gt;childrenNum = root-&gt;childrenNum == 0 ? 0 : 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="树的其他常见算法"><a href="#树的其他常见算法" class="headerlink" title="树的其他常见算法"></a>树的其他常见算法</h2><h3 id="最低公共祖先节点-Lowest-Common-Ancesters-LCA"><a href="#最低公共祖先节点-Lowest-Common-Ancesters-LCA" class="headerlink" title="最低公共祖先节点 Lowest Common Ancesters (LCA)"></a>最低公共祖先节点 Lowest Common Ancesters (LCA)</h3><h4 id="排序二叉树"><a href="#排序二叉树" class="headerlink" title="排序二叉树"></a>排序二叉树</h4><p>在二叉排序树中，如果两个节点的某个公共父节点的值在两个节点值之间，那么这个节点必然是两个节点的最低公共祖先。</p>
@@ -183,7 +185,7 @@ var _hmt = _hmt || [];
 
 
 
-    <a data-url="http://xiaoningliu.com/2016/03/17/树转换为二叉树/" data-id="cilvo3zsc0000n1clgyt4pveu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/2016/03/17/树转换为二叉树/" data-id="cim1ilm5x000dnqclavml5c8d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -354,6 +356,16 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
+        <a href="/2016/03/21/CPP类/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            C++类相关要点
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
     
         <a href="/2016/03/16/常见算法复杂度/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
@@ -372,6 +384,44 @@ var _hmt = _hmt || [];
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/23/CPP标准库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.wdjimg.com/mms/icon/v1/8/64/72c6d9759d14a5442bcb414e961aa648_256_256.png)" alt="C++标准库小记" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
+                            <p class="item-title"><a href="/2016/03/23/CPP标准库/" class="title">C++标准库小记</a></p>
+                            <p class="item-date"><time datetime="2016-03-23T02:11:17.000Z" itemprop="datePublished">2016-03-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/21/CPP类/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://image.coolapk.com/apk_logo/2014/1113/257251_1415867697_4166.png)" alt="C++类相关要点" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
+                            <p class="item-title"><a href="/2016/03/21/CPP类/" class="title">C++类相关要点</a></p>
+                            <p class="item-date"><time datetime="2016-03-21T04:45:12.000Z" itemprop="datePublished">2016-03-21</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -430,44 +480,6 @@ var _hmt = _hmt || [];
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/03/15/C_CPP文件大小/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://pic.baike.soso.com/p/20121025/20121025162509-156696453.jpg)" alt="C/C++检查文件大小" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
-                            <p class="item-title"><a href="/2016/03/15/C_CPP文件大小/" class="title">C/C++检查文件大小</a></p>
-                            <p class="item-date"><time datetime="2016-03-15T05:49:08.000Z" itemprop="datePublished">2016-03-15</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/03/14/2016-3-14-游泳小记/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://p4.img.cctvpic.com/imagedata/20100617/20100617100168.jpg)" alt="程序员健康指南之游泳" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/程序员健康指南/">程序员健康指南</a></p>
-                            <p class="item-title"><a href="/2016/03/14/2016-3-14-游泳小记/" class="title">程序员健康指南之游泳</a></p>
-                            <p class="item-date"><time datetime="2016-03-14T12:30:46.000Z" itemprop="datePublished">2016-03-14</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -477,7 +489,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -487,7 +499,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">7</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -497,7 +509,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/构造函数/">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标准库/">标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类/">类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重载函数/">重载函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">5</span></li></ul>
         </div>
     </div>
 
@@ -507,7 +519,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 15px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 15px;">复杂度</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 13.33px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 16.67px;">复杂度</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/构造函数/" style="font-size: 10px;">构造函数</a> <a href="/tags/标准库/" style="font-size: 10px;">标准库</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/类/" style="font-size: 10px;">类</a> <a href="/tags/虚函数/" style="font-size: 10px;">虚函数</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/重载函数/" style="font-size: 10px;">重载函数</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
         </div>
     </div>
 

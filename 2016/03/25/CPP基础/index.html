@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="刘晓宁的博客">
 <meta property="og:description" content="C++基础">
 <meta property="og:image" content="http://img005.hc360.cn/g7/M03/9C/A9/wKhQtFNE6VeEaALDAAAAAJHYSdw491.jpg">
-<meta property="og:updated_time" content="2016-03-25T03:39:00.000Z">
+<meta property="og:updated_time" content="2016-03-25T03:40:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++基础">
 <meta name="twitter:description" content="C++基础">
@@ -157,10 +157,17 @@ var _hmt = _hmt || [];
 <ul>
 <li>C和C++中const的具体实现是和编译器相关的</li>
 <li>一般进行的是在编译期间的检查，检查有无试图修改const的变量</li>
-<li><p>有的编译器可能将<figure class="highlight plain"><figcaption><span>int i = 10```中的i在代码中替换为10</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* 有的编译器会将const变量编译在read-only的内存中</span><br><span class="line"></span><br><span class="line">## new 和 malloc() 的区别</span><br><span class="line"></span><br><span class="line">两者都是进行动态内存分配的函数，具体有以下区别：</span><br><span class="line"></span><br><span class="line">* new是操作符而malloc()是标准库函数</span><br><span class="line">* 两者在C++都可使用，而C只能使用malloc()（所以在C++中没有被淘汰）</span><br><span class="line">* new与delete对应，malloc()和free()对应</span><br><span class="line">* new自动返回带有类型的指针，malloc()需要强制转换返回指针的类型</span><br><span class="line">* new会自动计算分配内存大小，而malloc()需要人工计算，如```sizeof(int) * 20</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>new和delete在动态创建或销毁C++类对象的时候，可以自动调用类的构造函数和析构函数（所以在C++中对类使用new和delete）</p>
-</li>
+<li>有的编译器可能将<em>const int i = 10</em>中的i在代码中替换为10</li>
+<li>有的编译器会将const变量编译在read-only的内存中</li>
+</ul>
+<h2 id="new-和-malloc-的区别"><a href="#new-和-malloc-的区别" class="headerlink" title="new 和 malloc() 的区别"></a>new 和 malloc() 的区别</h2><p>两者都是进行动态内存分配的函数，具体有以下区别：</p>
+<ul>
+<li>new是操作符而malloc()是标准库函数</li>
+<li>两者在C++都可使用，而C只能使用malloc()（所以在C++中没有被淘汰）</li>
+<li>new与delete对应，malloc()和free()对应</li>
+<li>new自动返回带有类型的指针，malloc()需要强制转换返回指针的类型</li>
+<li>new会自动计算分配内存大小，而malloc()需要人工计算，如<code>sizeof(int) * 20</code></li>
+<li>new和delete在动态创建或销毁C++类对象的时候，可以自动调用类的构造函数和析构函数（所以在C++中对类使用new和delete）</li>
 </ul>
 
         </div>

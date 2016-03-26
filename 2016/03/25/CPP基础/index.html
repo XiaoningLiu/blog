@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="刘晓宁的博客">
 <meta property="og:description" content="C++基础">
 <meta property="og:image" content="http://img005.hc360.cn/g7/M03/9C/A9/wKhQtFNE6VeEaALDAAAAAJHYSdw491.jpg">
-<meta property="og:updated_time" content="2016-03-26T01:14:10.000Z">
+<meta property="og:updated_time" content="2016-03-26T01:47:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++基础">
 <meta name="twitter:description" content="C++基础">
@@ -167,8 +167,10 @@ var _hmt = _hmt || [];
 <li>两者在C++都可使用，而C只能使用malloc()（所以在C++中没有被淘汰）</li>
 <li>new与delete对应，malloc()和free()对应</li>
 <li>new自动返回带有类型的指针，malloc()需要强制转换返回指针的类型</li>
-<li>new会自动计算分配内存大小，而malloc()需要人工计算，如<figure class="highlight plain"><figcaption><span>* 20```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">* new和delete在动态创建或销毁C++类对象的时候，可以自动调用类的构造函数和析构函数（所以在C++中对类使用new和delete）</span><br><span class="line"></span><br><span class="line">## sizeof</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">cout&lt;&lt;sizeof(short)&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;sizeof(int)&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;sizeof(long)&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;sizeof(long long)&lt;&lt;endl;</span><br></pre></td></tr></table></figure></li>
+<li>new会自动计算分配内存大小，而malloc()需要人工计算，如<code>sizeof(int) * 20</code></li>
+<li>new和delete在动态创建或销毁C++类对象的时候，可以自动调用类的构造函数和析构函数（所以在C++中对类使用new和delete）</li>
 </ul>
+<h2 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a>sizeof</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(<span class="keyword">short</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(<span class="keyword">int</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(<span class="keyword">long</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(<span class="keyword">long</span> <span class="keyword">long</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 <p>在64位mac系统测试得到：</p>
 <ul>
 <li>32位下：2 4 4 8</li>

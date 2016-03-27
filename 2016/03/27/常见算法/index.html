@@ -3,23 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>C/C++检查文件大小 | 刘晓宁的博客</title>
+    <title>常见算法 | 刘晓宁的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="C++,面试,C,文件" />
+        <meta name="keywords" content="面试,备忘,算法" />
     
-    <meta name="description" content="C与C++下查看文件大小">
+    <meta name="description" content="常见算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C/C++检查文件大小">
-<meta property="og:url" content="http://xiaoningliu.com/2016/03/15/C_CPP文件大小/index.html">
+<meta property="og:title" content="常见算法">
+<meta property="og:url" content="http://xiaoningliu.com/2016/03/27/常见算法/index.html">
 <meta property="og:site_name" content="刘晓宁的博客">
-<meta property="og:description" content="C与C++下查看文件大小">
-<meta property="og:image" content="http://pic.baike.soso.com/p/20121025/20121025162509-156696453.jpg">
-<meta property="og:updated_time" content="2016-03-15T06:11:35.000Z">
+<meta property="og:description" content="常见算法">
+<meta property="og:image" content="http://f.hiphotos.baidu.com/image/h%3D200/sign=d9c2d17b1a950a7b6a3549c43ad0625c/14ce36d3d539b600af3985faee50352ac75cb78c.jpg">
+<meta property="og:updated_time" content="2016-03-27T13:52:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C/C++检查文件大小">
-<meta name="twitter:description" content="C与C++下查看文件大小">
-<meta name="twitter:image" content="http://pic.baike.soso.com/p/20121025/20121025162509-156696453.jpg">
+<meta name="twitter:title" content="常见算法">
+<meta name="twitter:description" content="常见算法">
+<meta name="twitter:image" content="http://f.hiphotos.baidu.com/image/h%3D200/sign=d9c2d17b1a950a7b6a3549c43ad0625c/14ce36d3d539b600af3985faee50352ac75cb78c.jpg">
     
 
     
@@ -119,62 +119,44 @@ var _hmt = _hmt || [];
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/C/">C++</a>
+    <a class="page-title-link" href="/categories/算法/">算法</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-C_CPP文件大小" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-常见算法" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        C/C++检查文件大小
+        常见算法
         </h1>
     
 
             </header>
         
         <div class="article-subtitle">
-            <a href="/2016/03/15/C_CPP文件大小/" class="article-date">
-    <time datetime="2016-03-15T05:49:08.000Z" itemprop="datePublished">2016-03-15</time>
+            <a href="/2016/03/27/常见算法/" class="article-date">
+    <time datetime="2016-03-27T13:45:39.000Z" itemprop="datePublished">2016-03-27</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件/">文件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/备忘/">备忘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <h3 id="C-C-检查文件大小"><a href="#C-C-检查文件大小" class="headerlink" title="C/C++检查文件大小"></a>C/C++检查文件大小</h3><p><img src="http://pic.baike.soso.com/p/20121025/20121025162509-156696453.jpg" alt="文件大小"></p>
-<p>今天V2EX社区有伙伴贴出了面试阿里后端的内容，其中涉及使用C获取文件大小的问题。因为本人对C++比较熟悉，将可以使用C++风格的两种方式总结如下：</p>
-<p><strong>备注：以下代码均为C++实现</strong></p>
-<h4 id="C-使用ifstream查看"><a href="#C-使用ifstream查看" class="headerlink" title="C++使用ifstream查看"></a>C++使用ifstream查看</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">ifstream <span class="title">i</span><span class="params">(<span class="string">"file"</span>)</span></span>;</span><br><span class="line"><span class="keyword">if</span> (i.is_open())</span><br><span class="line">&#123;</span><br><span class="line">    i.seekg(<span class="number">0</span>, i.end); <span class="comment">// i.end是枚举类型</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"c++ length:"</span>&lt;&lt;i.tellg()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">i.close();</span><br></pre></td></tr></table></figure>
-<p>重点函数有两个，平时可能不太常用，函数还有其他的重载实现，但在本例子中只用了以下两种实现：</p>
-<ol>
-<li>seekg(0, i.end)</li>
-<li>tellg()</li>
-</ol>
-<h4 id="C-使用C代码库查看"><a href="#C-使用C代码库查看" class="headerlink" title="C++使用C代码库查看"></a>C++使用C代码库查看</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">FILE *f = fopen(<span class="string">"file"</span>, <span class="string">"r"</span>);</span><br><span class="line">fseek(f, <span class="number">0</span>, SEEK_END);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"c length: "</span>&lt;&lt;ftell(f)&lt;&lt;<span class="built_in">endl</span>;;</span><br><span class="line">fclose(f);</span><br></pre></td></tr></table></figure>
-<p>本例子中重点使用以下函数与命令：</p>
-<ol>
-<li>FILE *f = fopen(xx, xx)</li>
-<li>fseek(f, 0, SEEK_END)</li>
-<li>ftell()</li>
-</ol>
-<h4 id="Linux使用Shell命令查看"><a href="#Linux使用Shell命令查看" class="headerlink" title="Linux使用Shell命令查看"></a>Linux使用Shell命令查看</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lh | grep XXX | awk &apos;&#123;print $x&#125;&apos;</span><br></pre></td></tr></table></figure>
-<h4 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h4><p>在C下面还有使用<strong>struct _stat</strong>结构体获取文件大小的办法，具体请参考相关资料。</p>
-<h4 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h4><ul>
-<li><a href="http://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html" target="_blank" rel="external">AWK 命令的使用方式</a></li>
-<li><a href="http://www.2cto.com/kf/201405/298713.html" target="_blank" rel="external">C语言获取文件大小两种办法</a></li>
-</ul>
-
+            <h1 id="常见算法"><a href="#常见算法" class="headerlink" title="常见算法"></a>常见算法</h1><p><img src="http://f.hiphotos.baidu.com/image/h%3D200/sign=d9c2d17b1a950a7b6a3549c43ad0625c/14ce36d3d539b600af3985faee50352ac75cb78c.jpg" alt="常见算法"></p>
+<p><code>常见算法，持续整理中</code></p>
+<h2 id="数字的运算"><a href="#数字的运算" class="headerlink" title="数字的运算"></a>数字的运算</h2><h4 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>辗转相除法，以上算法要求a与b都是正整数，不要求a与b的大小关系。</p>
+<h4 id="数字的约数个数"><a href="#数字的约数个数" class="headerlink" title="数字的约数个数"></a>数字的约数个数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">divisors</span><span class="params">(<span class="keyword">long</span> a)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (a == <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (a &lt; <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 求解质数因子</span></span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span>, <span class="keyword">long</span>&gt; primeSubNums;</span><br><span class="line">	<span class="keyword">long</span> ini = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(a&gt;<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> i= ini; i&lt;=a; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a%i == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                a = a/i;</span><br><span class="line">                primeSubNums[i]++;</span><br><span class="line">                ini = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 通过质数因子求得约数个数，需要判断是否为质数</span></span><br><span class="line">    <span class="keyword">if</span> (primeSubNums.size() == <span class="number">1</span> &amp;&amp; primeSubNums[a] &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">return</span> primeSubNums.size() + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">long</span> res = <span class="number">1</span>;</span><br><span class="line">    	<span class="keyword">for</span> (<span class="keyword">auto</span> i : primeSubNums)</span><br><span class="line">    	&#123;</span><br><span class="line">    		res *= (i.second + <span class="number">1</span>);</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://xiaoningliu.com/2016/03/15/C_CPP文件大小/" data-id="cim1ilm5p0007nqcltmngbaoj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/2016/03/27/常见算法/" data-id="cimamkh160000d3clk1uqcxre" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -241,7 +223,7 @@ var _hmt = _hmt || [];
     <section id="comments">
     
         
-    <div class="ds-thread" data-thread-key="2016/03/15/C_CPP文件大小/" data-title="C/C++检查文件大小" data-url="http://xiaoningliu.com/2016/03/15/C_CPP文件大小/"></div>
+    <div class="ds-thread" data-thread-key="2016/03/27/常见算法/" data-title="常见算法" data-url="http://xiaoningliu.com/2016/03/27/常见算法/"></div>
     <style>
         #ds-thread #ds-reset .ds-textarea-wrapper {
             background: none;
@@ -345,20 +327,10 @@ var _hmt = _hmt || [];
         
 <nav id="article-nav">
     
-        <a href="/2016/03/15/Linux快速笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            Linux快速笔记
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2016/03/14/2016-3-14-游泳小记/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/03/25/网络基本/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">程序员健康指南之游泳</p>
+        <p class="article-nav-title">网络基本知识</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     

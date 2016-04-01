@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="刘晓宁的博客">
 <meta property="og:description" content="常见算法复杂度；复杂度；算法；树转换为二叉树">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png">
-<meta property="og:updated_time" content="2016-03-17T06:52:55.000Z">
+<meta property="og:updated_time" content="2016-04-01T13:50:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树的相关算法以及树转换为二叉树">
 <meta name="twitter:description" content="常见算法复杂度；复杂度；算法；树转换为二叉树">
@@ -81,7 +81,7 @@ var _hmt = _hmt || [];
                                     <a class="main-nav-list-link" href="/">主页</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
                                     <a class="main-nav-list-link" href="/aboutme/">关于</a>
@@ -148,30 +148,69 @@ var _hmt = _hmt || [];
             <h1 id="树的相关算法以及树转换为二叉树"><a href="#树的相关算法以及树转换为二叉树" class="headerlink" title="树的相关算法以及树转换为二叉树"></a>树的相关算法以及树转换为二叉树</h1><p><img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png" alt="树与二叉树"></p>
 <h2 id="树的相关概念"><a href="#树的相关概念" class="headerlink" title="树的相关概念"></a>树的相关概念</h2><p><strong>二叉树</strong> Binary Tree</p>
 <p>每个节点可有左右区分的两个子节点(子树)；节点的值<strong>可能相同</strong>(代码中不能根据值判断是否为同一个节点)；</p>
-<p><strong>二叉排序树</strong> Binary Search Tree</p>
-<p>在二叉树的基础上，本节点的值必定大于左子树，小于右子树；所有节点的值<strong>都不相同</strong>；</p>
 <p><strong>完全二叉树</strong></p>
 <p>二叉树的基础上，树的每一行都是满的(2^(k-1)个节点在第k行)，除了最后一行。最后一行的节点从左到右是满的。</p>
 <p><strong>满二叉树</strong></p>
 <p>二叉树的基础上，树的每一行都是满的(2^(k-1)个节点在第k行)。</p>
-<p><strong>平衡二叉树</strong></p>
-<p>二叉树中，每个节点左右两个子树的高度差不超过1.</p>
+<p><strong>二叉排序树</strong> Binary Search Tree (BST)</p>
+<p>在二叉树的基础上，本节点的值必定大于左子树，小于右子树；所有节点的值<strong>都不相同</strong>；</p>
+<p><strong>问题：如何判断一棵树是BST？</strong></p>
+<ol>
+<li>每个节点至多有两个子节点；</li>
+<li>每个节点的值必须大于/小于父节点，同时大于/小于父父节点</li>
+</ol>
+<p><strong>平衡二叉树</strong> Balanced Binary Tree 或 AVL树</p>
+<p>在二叉排序树的基础上，每个节点左右两个子树的高度差不超过1。</p>
+<ul>
+<li>保证插入、删除以及查找节点的时间最好和最坏都在log(n)</li>
+<li>避免BST树可能退化为链表的可能</li>
+<li>带来的代价是维持平衡需要的额外旋转log(n)时间</li>
+<li>可以为空树</li>
+</ul>
+<h3 id="红黑树与AVL树"><a href="#红黑树与AVL树" class="headerlink" title="红黑树与AVL树"></a>红黑树与AVL树</h3><p>STL中set、map、multiset、multimap是由红黑树实现的，所以查找速度是O(log(n))</p>
+<p>STL中unordered_set、unordered_map、unordered_multiset、unordered_multimap是由hash实现的，所以查找速度是O(1)</p>
+<h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ul>
+<li>两者均为（自）平衡二叉树的实现算法</li>
+<li>插入、删除、查找的算法复杂度相同（红黑树），都是O(log(n))</li>
+</ul>
+<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><ul>
+<li>AVL树严格维持左右子树高度差在1之内（严格平衡树），而红黑树并不严格遵守（相对便宜的解决方案）</li>
+<li>红黑树插入和删除效率较高（统计性能比AVL好）</li>
+<li>红黑树的检索效率不如AVL树</li>
+<li>红黑树的根节点是黑的</li>
+</ul>
+<h4 id="红黑树或者AVL树与哈希的选取"><a href="#红黑树或者AVL树与哈希的选取" class="headerlink" title="红黑树或者AVL树与哈希的选取"></a>红黑树或者AVL树与哈希的选取</h4><p>红黑树相对于哈希表，在选择使用的时候有什么依据？</p>
+<p>权衡三个因素: 查找速度, 数据量, 内存使用，可扩展性。 </p>
+<ul>
+<li>查找速度：哈希更优</li>
+<li>数据量与内存：哈希消耗更大</li>
+<li>可扩展性：哈希更不易扩展，适应于静态数据</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://www.tuicool.com/articles/NJj6nin" target="_blank" rel="external">搞定面试中的红黑树问题</a></li>
+<li><a href="http://www.tuicool.com/articles/FRRZnqB" target="_blank" rel="external">红黑树和AVL树的比较</a></li>
+<li><a href="http://blog.csdn.net/klarclm/article/details/7780319" target="_blank" rel="external">红黑树 VS AVL树</a></li>
+<li><a href="http://www.cnblogs.com/fornever/archive/2011/11/15/2249492.html" target="_blank" rel="external">平衡二叉树（解惑</a></li>
+</ul>
+<p><strong>B树</strong></p>
+<p>多路树</p>
 <h2 id="树转换为二叉树"><a href="#树转换为二叉树" class="headerlink" title="树转换为二叉树"></a>树转换为二叉树</h2><p>很简单，每个节点的最左边的儿子还是儿子，其他儿子变成这个儿子的孙子、曾孙子等，可以递归进行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">  int val;</span><br><span class="line">  int childrenNum;</span><br><span class="line">  Node** children;</span><br><span class="line">  void addChild(Node* n)</span><br><span class="line">  &#123;</span><br><span class="line">    children[childrenNum++] = n;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void transfer(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">  if (root == NULL)</span><br><span class="line">    return;</span><br><span class="line">    </span><br><span class="line">  for (int i = 0; i &lt; root-&gt;childrenNum; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    transfer(root-&gt;children[i]); // 注意：必须先执行子节点的变换</span><br><span class="line">    if (i != 0)</span><br><span class="line">      root-&gt;children[i - 1]-&gt;addChild(root-&gt;children[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  root-&gt;childrenNum = root-&gt;childrenNum == 0 ? 0 : 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Node</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> val;</span><br><span class="line">  <span class="keyword">int</span> childrenNum;</span><br><span class="line">  Node** children;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">addChild</span><span class="params">(Node* n)</span></span><br><span class="line">  </span>&#123;</span><br><span class="line">    children[childrenNum++] = n;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(Node* root)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; root-&gt;childrenNum; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    transfer(root-&gt;children[i]); <span class="comment">// 注意：必须先执行子节点的变换</span></span><br><span class="line">    <span class="keyword">if</span> (i != <span class="number">0</span>)</span><br><span class="line">      root-&gt;children[i - <span class="number">1</span>]-&gt;addChild(root-&gt;children[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  root-&gt;childrenNum = root-&gt;childrenNum == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="树的其他常见算法"><a href="#树的其他常见算法" class="headerlink" title="树的其他常见算法"></a>树的其他常见算法</h2><h3 id="最低公共祖先节点-Lowest-Common-Ancesters-LCA"><a href="#最低公共祖先节点-Lowest-Common-Ancesters-LCA" class="headerlink" title="最低公共祖先节点 Lowest Common Ancesters (LCA)"></a>最低公共祖先节点 Lowest Common Ancesters (LCA)</h3><h4 id="排序二叉树"><a href="#排序二叉树" class="headerlink" title="排序二叉树"></a>排序二叉树</h4><p>在二叉排序树中，如果两个节点的某个公共父节点的值在两个节点值之间，那么这个节点必然是两个节点的最低公共祖先。</p>
 <p>也就是说，<strong>在两个节点的所有公共祖先节点中，只有最低公共祖先节点的值在两者之间</strong>。</p>
 <p>利用这个结论，可以快速的在BST(Binary Search Tree)中找到两个节点值p与q的LCA(p &lt; q)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">while (node)</span><br><span class="line">&#123;</span><br><span class="line">  if (p &lt; node-&gt;val &amp;&amp; q &lt; node-&gt;val)</span><br><span class="line">  &#123;</span><br><span class="line">    node = node-&gt;left;</span><br><span class="line">    continue;</span><br><span class="line">  &#125;</span><br><span class="line">  if (p &gt; node-&gt;val &amp;&amp; q &gt; node-&gt;val)</span><br><span class="line">  &#123;</span><br><span class="line">    node = node-&gt;right;</span><br><span class="line">    continue;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  if (p &lt; node-&gt;val &amp;&amp; q &gt; node-&gt;val)</span><br><span class="line">    return node; // 找到LCA</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">while (node)</span><br><span class="line">&#123;</span><br><span class="line">  if (p &lt; node-&gt;val &amp;&amp; q &lt; node-&gt;val)</span><br><span class="line">  &#123;</span><br><span class="line">    node = node-&gt;left;</span><br><span class="line">    continue;</span><br><span class="line">  &#125;</span><br><span class="line">  if (p &gt; node-&gt;val &amp;&amp; q &gt; node-&gt;val)</span><br><span class="line">  &#123;</span><br><span class="line">    node = node-&gt;right;</span><br><span class="line">    continue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (p &lt; node-&gt;val &amp;&amp; q &gt; node-&gt;val)</span><br><span class="line">    return node; // 找到LCA</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="普通二叉树"><a href="#普通二叉树" class="headerlink" title="普通二叉树"></a>普通二叉树</h4><p>首先，在普通二叉树中没有二叉搜索树的规律，因此可以使用递归进行运算。</p>
 <p>通常情况下我们会构造递归函数，目的是返回子树中p与q的LCA，否则返回NULL。</p>
 <p>但问题来了，如果节点左右子节点都为NULL，如何判断当前节点是否是p与q的LCA？</p>
 <p>所以可以让递归函数返回子树中是否包含p与q，那么就可以判断出当前节点是否是LCA了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* lowestCommonAncestorHelper(TreeNode* root, TreeNode* p, TreeNode* q, bool &amp; cp, bool &amp; cq) &#123;</span><br><span class="line">    if (root == NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        cp = false;</span><br><span class="line">        cq = false;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool lcp(false), lcq(false), rcp(false), rcq(false);</span><br><span class="line">    TreeNode* ln = lowestCommonAncestorHelper(root-&gt;left, p, q, lcp, lcq);</span><br><span class="line">    if (lcp &amp;&amp; lcq)</span><br><span class="line">    &#123;</span><br><span class="line">        cp = true;</span><br><span class="line">        cq = true;</span><br><span class="line">        return ln;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode* rn = lowestCommonAncestorHelper(root-&gt;right, p, q, rcp, rcq);</span><br><span class="line">    if (rcp &amp;&amp; rcq)</span><br><span class="line">    &#123;</span><br><span class="line">        cp = true;</span><br><span class="line">        cq = true;</span><br><span class="line">        return rn;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cp = lcp || rcp || (root == p); // 注意：！普通的二叉树可能不是二叉搜索树(BST)，所以树节点的值可能重复</span><br><span class="line">    cq = lcq || rcq || (root == q);</span><br><span class="line">    if ( cp &amp;&amp; cq )</span><br><span class="line">        return root;</span><br><span class="line">    </span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* lowestCommonAncestorHelper(TreeNode* root, TreeNode* p, TreeNode* q, bool &amp; cp, bool &amp; cq) &#123;</span><br><span class="line">    if (root == NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        cp = false;</span><br><span class="line">        cq = false;</span><br><span class="line">        return NULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool lcp(false), lcq(false), rcp(false), rcq(false);</span><br><span class="line">    TreeNode* ln = lowestCommonAncestorHelper(root-&gt;left, p, q, lcp, lcq);</span><br><span class="line">    if (lcp &amp;&amp; lcq)</span><br><span class="line">    &#123;</span><br><span class="line">        cp = true;</span><br><span class="line">        cq = true;</span><br><span class="line">        return ln;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode* rn = lowestCommonAncestorHelper(root-&gt;right, p, q, rcp, rcq);</span><br><span class="line">    if (rcp &amp;&amp; rcq)</span><br><span class="line">    &#123;</span><br><span class="line">        cp = true;</span><br><span class="line">        cq = true;</span><br><span class="line">        return rn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cp = lcp || rcp || (root == p); // 注意：！普通的二叉树可能不是二叉搜索树(BST)，所以树节点的值可能重复</span><br><span class="line">    cq = lcq || rcq || (root == q);</span><br><span class="line">    if ( cp &amp;&amp; cq )</span><br><span class="line">        return root;</span><br><span class="line"></span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="树的左右对称交换"><a href="#树的左右对称交换" class="headerlink" title="树的左右对称交换"></a>树的左右对称交换</h3><p>使用递归，左右交换即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void reverse(Node * root)</span><br><span class="line">&#123;</span><br><span class="line">  if (root == NULL)</span><br><span class="line">    return;</span><br><span class="line">    </span><br><span class="line">  swap(root-&gt;left, root-&gt;right); // swap和下面reverse的顺序可以调换</span><br><span class="line">  reverse(root-&gt;left);</span><br><span class="line">  reverse(root-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void reverse(Node * root)</span><br><span class="line">&#123;</span><br><span class="line">  if (root == NULL)</span><br><span class="line">    return;</span><br><span class="line"></span><br><span class="line">  swap(root-&gt;left, root-&gt;right); // swap和下面reverse的顺序可以调换</span><br><span class="line">  reverse(root-&gt;left);</span><br><span class="line">  reverse(root-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="类似题目"><a href="#类似题目" class="headerlink" title="类似题目"></a>类似题目</h4><p><strong>对称交换二进制</strong></p>
 <p>使用二分法左右交换。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void inverseBinary(int &amp;bin)</span><br><span class="line">&#123;</span><br><span class="line">	bin = ((0x0000FFFF &amp; bin) &lt;&lt; 16) | ( (0xFFFF0000 &amp; bin) &gt;&gt; 16);</span><br><span class="line">	bin = ((0x00FF00FF &amp; bin) &lt;&lt; 8 ) | ( (0xFF00FF00 &amp; bin) &gt;&gt; 8);</span><br><span class="line">	bin = ((0x0F0F0F0F &amp; bin) &lt;&lt; 4 ) | ( (0xF0F0F0F0 &amp; bin) &gt;&gt; 4);</span><br><span class="line">	bin = ((0x33333333 &amp; bin) &lt;&lt; 2 ) | ( (0xCCCCCCCC &amp; bin) &gt;&gt; 2);</span><br><span class="line">	bin = ((0x55555555 &amp; bin) &lt;&lt; 1 ) | ( (0xAAAAAAAA &amp; bin) &gt;&gt; 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inverseBinary</span><span class="params">(<span class="keyword">int</span> &amp;bin)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	bin = ((<span class="number">0x0000FFFF</span> &amp; bin) &lt;&lt; <span class="number">16</span>) | ( (<span class="number">0xFFFF0000</span> &amp; bin) &gt;&gt; <span class="number">16</span>);</span><br><span class="line">	bin = ((<span class="number">0x00FF00FF</span> &amp; bin) &lt;&lt; <span class="number">8</span> ) | ( (<span class="number">0xFF00FF00</span> &amp; bin) &gt;&gt; <span class="number">8</span>);</span><br><span class="line">	bin = ((<span class="number">0x0F0F0F0F</span> &amp; bin) &lt;&lt; <span class="number">4</span> ) | ( (<span class="number">0xF0F0F0F0</span> &amp; bin) &gt;&gt; <span class="number">4</span>);</span><br><span class="line">	bin = ((<span class="number">0x33333333</span> &amp; bin) &lt;&lt; <span class="number">2</span> ) | ( (<span class="number">0xCCCCCCCC</span> &amp; bin) &gt;&gt; <span class="number">2</span>);</span><br><span class="line">	bin = ((<span class="number">0x55555555</span> &amp; bin) &lt;&lt; <span class="number">1</span> ) | ( (<span class="number">0xAAAAAAAA</span> &amp; bin) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>对称交换字符串</strong></p>
 <p>使用左右两个指针中间移动交换即可。</p>
 <h2 id="深度优先搜索-DFS-与广度优先搜索-BFS"><a href="#深度优先搜索-DFS-与广度优先搜索-BFS" class="headerlink" title="深度优先搜索(DFS)与广度优先搜索(BFS)"></a>深度优先搜索(DFS)与广度优先搜索(BFS)</h2><p>深度优先搜索使用Stack递归即可，而广度优先搜索需要使用队列(deque).</p>
@@ -388,6 +427,63 @@ var _hmt = _hmt || [];
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2016/03/27/常见算法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ec4.images-amazon.com/images/I/51MaClWICNL._SX350_BO1,204,203,200_.jpg)" alt="常见算法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/2016/03/27/常见算法/" class="title">常见算法</a></p>
+                            <p class="item-date"><time datetime="2016-03-27T13:45:39.000Z" itemprop="datePublished">2016-03-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/25/网络基本/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://coolshell.cn//wp-content/uploads/2014/05/tcp_open_close.jpg)" alt="网络基本知识" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/网络/">网络</a></p>
+                            <p class="item-title"><a href="/2016/03/25/网络基本/" class="title">网络基本知识</a></p>
+                            <p class="item-date"><time datetime="2016-03-25T04:05:21.000Z" itemprop="datePublished">2016-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/25/CPP基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img005.hc360.cn/g7/M03/9C/A9/wKhQtFNE6VeEaALDAAAAAJHYSdw491.jpg)" alt="C++基础" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
+                            <p class="item-title"><a href="/2016/03/25/CPP基础/" class="title">C++基础</a></p>
+                            <p class="item-date"><time datetime="2016-03-25T02:56:58.000Z" itemprop="datePublished">2016-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/03/23/CPP标准库/" class="thumbnail">
     
     
@@ -423,63 +519,6 @@ var _hmt = _hmt || [];
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/03/17/树转换为二叉树/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png)" alt="树的相关算法以及树转换为二叉树" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
-                            <p class="item-title"><a href="/2016/03/17/树转换为二叉树/" class="title">树的相关算法以及树转换为二叉树</a></p>
-                            <p class="item-date"><time datetime="2016-03-17T01:36:36.000Z" itemprop="datePublished">2016-03-17</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/03/16/常见算法复杂度/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://img4.imgtn.bdimg.com/it/u=3251662289,3984241275&amp;fm=21&amp;gp=0.jpg)" alt="常见算法复杂度" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
-                            <p class="item-title"><a href="/2016/03/16/常见算法复杂度/" class="title">常见算法复杂度</a></p>
-                            <p class="item-date"><time datetime="2016-03-16T03:47:46.000Z" itemprop="datePublished">2016-03-16</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/03/15/Linux快速笔记/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.6188.com/upload_6188s/Small_paper/xitong/3174/s800/linux_014.jpg)" alt="Linux快速笔记" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a></p>
-                            <p class="item-title"><a href="/2016/03/15/Linux快速笔记/" class="title">Linux快速笔记</a></p>
-                            <p class="item-date"><time datetime="2016-03-15T15:19:29.000Z" itemprop="datePublished">2016-03-15</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -489,7 +528,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -499,7 +538,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">9</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">12</span></li></ul>
         </div>
     </div>
 
@@ -509,7 +548,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/构造函数/">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标准库/">标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类/">类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重载函数/">重载函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">5</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDP/">UDP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/构造函数/">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标准库/">标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类/">类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重载函数/">重载函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -519,7 +558,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 13.33px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 16.67px;">复杂度</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/构造函数/" style="font-size: 10px;">构造函数</a> <a href="/tags/标准库/" style="font-size: 10px;">标准库</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/类/" style="font-size: 10px;">类</a> <a href="/tags/虚函数/" style="font-size: 10px;">虚函数</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/重载函数/" style="font-size: 10px;">重载函数</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/UDP/" style="font-size: 10px;">UDP</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 13.33px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 13.33px;">复杂度</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/构造函数/" style="font-size: 10px;">构造函数</a> <a href="/tags/标准库/" style="font-size: 10px;">标准库</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/类/" style="font-size: 10px;">类</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/虚函数/" style="font-size: 10px;">虚函数</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/重载函数/" style="font-size: 10px;">重载函数</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
         </div>
     </div>
 

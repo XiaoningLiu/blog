@@ -44,6 +44,17 @@ sizeof(c)4
 sizeof(d)4
 ```
 
+使用64bit编译，**结果如下：**
+
+```C++
+sizeof(a)1
+sizeof(b)1
+sizeof(c)8
+sizeof(d)8
+```
+
+注意：C++中指针本身的长度、long变量的长度是和内存地址位宽一致的
+
 ## 构造函数
 
 

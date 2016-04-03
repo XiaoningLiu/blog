@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="刘晓宁的博客">
 <meta property="og:description" content="常见算法复杂度；复杂度；算法；树转换为二叉树">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/02/Nary_to_binary_tree_conversion.png">
-<meta property="og:updated_time" content="2016-04-01T13:50:50.000Z">
+<meta property="og:updated_time" content="2016-04-03T09:30:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树的相关算法以及树转换为二叉树">
 <meta name="twitter:description" content="常见算法复杂度；复杂度；算法；树转换为二叉树">
@@ -167,6 +167,29 @@ var _hmt = _hmt || [];
 <li>带来的代价是维持平衡需要的额外旋转log(n)时间</li>
 <li>可以为空树</li>
 </ul>
+<p><strong>前缀树</strong> Prefix Tree 或者 Trie Tree</p>
+<p>根节点为空，每个字母是一个节点（如26个小写字母），每个节点的子节点同样是。从头到尾会组成一个单词。一棵排序树。</p>
+<p>具有的特性：</p>
+<ul>
+<li>快速判断某个单词是否存在于一堆单词中；O(LengthofWord)</li>
+<li>获得以某个前缀开始的单词的数量；</li>
+<li>占用内存较大（每个节点要保存26个指针）；</li>
+<li>每个节点包含以下元素<ul>
+<li>当前字符；</li>
+<li>以当前字符结尾的单词个数；</li>
+<li>以当前字符为前缀的单词个数；</li>
+<li>指向子节点的指针数组；</li>
+</ul>
+</li>
+</ul>
+<p>与Hash的异同：</p>
+<ul>
+<li>前缀树较常应用于普通长度的单词（单词长度），对于MD5等较长的无规则字符不太好；</li>
+<li>Hash在工业中更为常用方便，处理大量数据；</li>
+</ul>
+<p><strong>区间树</strong> Segment Tree</p>
+<p>属于二叉搜索树，每个节点代表一段范围。用于快速求解<strong>随机范围</strong>内值的和。更新具体节点的值的花费是O(logn)。</p>
+<p><a href="http://www.cnblogs.com/tanky_woo/archive/2010/09/25/1834523.html" target="_blank" rel="external">区间树</a></p>
 <h3 id="红黑树与AVL树"><a href="#红黑树与AVL树" class="headerlink" title="红黑树与AVL树"></a>红黑树与AVL树</h3><p>STL中set、map、multiset、multimap是由红黑树实现的，所以查找速度是O(log(n))</p>
 <p>STL中unordered_set、unordered_map、unordered_multiset、unordered_multimap是由hash实现的，所以查找速度是O(1)</p>
 <h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ul>

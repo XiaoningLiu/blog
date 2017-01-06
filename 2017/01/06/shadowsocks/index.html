@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Shadowsocks on Ubuntu 16 | 刘晓宁的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="shadowsocks,科学上网,工具,翻墙,Great File Wall,GFW,网络,自启动" />
+    
+    <meta name="description" content="导读：Shadowsocks 是一种简便快捷的代理工具，其优异的性能可以在配置很低的机器中流畅运行，因此受到广泛的欢迎。以下是在一台全新的 Ubuntu Server 中使用 apt-get 安装并搭建 Shadowsocks Server 的过程。
+本文将涉及如下的要点：
+
+apt-get 的使用
+shadowsocks config 配置文件的配置
+shadowsocks 服务的启动
+
+安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shadowsocks on Ubuntu 16">
+<meta property="og:url" content="http://xiaoningliu.com/2017/01/06/shadowsocks/index.html">
+<meta property="og:site_name" content="刘晓宁的博客">
+<meta property="og:description" content="导读：Shadowsocks 是一种简便快捷的代理工具，其优异的性能可以在配置很低的机器中流畅运行，因此受到广泛的欢迎。以下是在一台全新的 Ubuntu Server 中使用 apt-get 安装并搭建 Shadowsocks Server 的过程。
+本文将涉及如下的要点：
+
+apt-get 的使用
+shadowsocks config 配置文件的配置
+shadowsocks 服务的启动
+
+安装">
+<meta property="og:image" content="http://wechatair.azureedge.net/wp-content/uploads/2017/01/unnamed.png">
+<meta property="og:updated_time" content="2017-01-06T15:13:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shadowsocks on Ubuntu 16">
+<meta name="twitter:description" content="导读：Shadowsocks 是一种简便快捷的代理工具，其优异的性能可以在配置很低的机器中流畅运行，因此受到广泛的欢迎。以下是在一台全新的 Ubuntu Server 中使用 apt-get 安装并搭建 Shadowsocks Server 的过程。
+本文将涉及如下的要点：
+
+apt-get 的使用
+shadowsocks config 配置文件的配置
+shadowsocks 服务的启动
+
+安装">
+<meta name="twitter:image" content="http://wechatair.azureedge.net/wp-content/uploads/2017/01/unnamed.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?8d0a95a57014160eb5ff2b6c5db1ac90# enter Baidu Analytics hash key";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Let&#39;s run for a walk!</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工具/">工具</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/aboutme/">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
+    <input name="wd" type="text" class="search-form-input" placeholder="搜索" />
+</form>
+<script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:xiaoningliu.com ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/工具/">工具</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-shadowsocks" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Shadowsocks on Ubuntu 16
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2017/01/06/shadowsocks/" class="article-date">
+    <time datetime="2017-01-06T11:38:00.000Z" itemprop="datePublished">2017-01-06</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GFW/">GFW</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Great-File-Wall/">Great File Wall</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/科学上网/">科学上网</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻墙/">翻墙</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自启动/">自启动</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="http://wechatair.azureedge.net/wp-content/uploads/2017/01/unnamed.png" alt="shadowsocks"></p>
+<p><strong>导读</strong>：Shadowsocks 是一种简便快捷的代理工具，其优异的性能可以在配置很低的机器中流畅运行，因此受到广泛的欢迎。以下是在一台全新的 Ubuntu Server 中使用 apt-get 安装并搭建 Shadowsocks Server 的过程。</p>
+<p>本文将涉及如下的要点：</p>
+<ul>
+<li>apt-get 的使用</li>
+<li>shadowsocks config 配置文件的配置</li>
+<li>shadowsocks 服务的启动</li>
+</ul>
+<h2 id="安装与配置步骤"><a href="#安装与配置步骤" class="headerlink" title="安装与配置步骤"></a>安装与配置步骤</h2><h3 id="步骤一-使用-apt-get-安装-Shadowsocks-Server"><a href="#步骤一-使用-apt-get-安装-Shadowsocks-Server" class="headerlink" title="步骤一 使用 apt-get 安装 Shadowsocks Server"></a>步骤一 使用 apt-get 安装 Shadowsocks Server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install shadowsocks</span><br></pre></td></tr></table></figure>
+<h3 id="步骤二-创建配置文件"><a href="#步骤二-创建配置文件" class="headerlink" title="步骤二 创建配置文件"></a>步骤二 创建配置文件</h3><p>配置文件包含了 Shadowsocks 服务所需要的简便配置，比如加密方式与密码设置等。值得注意的是，Shadowsocks 可以不需要配置文件运行，在没有配置文件的情况下，密码等信息需要作为配置参数的形式在启动服务时传递。</p>
+<p>为方便重复利用配置文件，可以建立配置文件，并将配置文件放置在当前用户目录下面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">vim ss.config</span><br></pre></td></tr></table></figure>
+<p>在创建的 ss.config 的文件中，加入如下内容，内容以 json 格式存储，注意最后一行没有逗号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;server_port&quot;:4433,</span><br><span class="line">    &quot;local_port&quot;:4433,</span><br><span class="line">    &quot;password&quot;:&quot;123123123&quot;,</span><br><span class="line">    &quot;timeout&quot;:600,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;auth&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="步骤三-启动服务"><a href="#步骤三-启动服务" class="headerlink" title="步骤三 启动服务"></a>步骤三 启动服务</h3><p>使用 apt-get 安装好 Shadowsocks Server 之后，可以直接使用 ssserver 命令启动服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c ~/ss.config -d start</span><br></pre></td></tr></table></figure>
+<p>命令中的参数 -c 指的是配置文件的路径，这里指向了当前用户目录(~)下的 ss.config 文件。参数 -d 指的是使用 daemon 的方式启动，即可以在后台运行 Shadowsocks 服务。</p>
+<h3 id="步骤四-设置自启动"><a href="#步骤四-设置自启动" class="headerlink" title="步骤四 设置自启动"></a>步骤四 设置自启动</h3><p>按上面的步骤配置好之后，如果遇到服务器的重新启动，那么我们需要手工登录到服务器重新运行上面的命令。我们可以将上面的命令配置到系统启动的脚本中免除手工操作的繁琐步骤。</p>
+<p>首先，定位 ssserver 的绝对路径，可以通过 locate 命令实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myss@myss:~$ locate ssserver</span><br><span class="line">/usr/local/bin/ssserver</span><br></pre></td></tr></table></figure>
+<p>另外，定位 rc.local 脚本文件的位置，可以在其中加入系统启动时候的脚本命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myss@myss:~$ locate rc.local</span><br><span class="line">/etc/rc.local</span><br></pre></td></tr></table></figure>
+<p>打开 rc.local 在其中加入自动启动 Shadowsocks ssserver 服务的命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/rc.local</span><br></pre></td></tr></table></figure>
+<p>在 exit 0 行之前，加入如下命令，保存退出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/ssserver -c /home/myss/ss.config -d start</span><br></pre></td></tr></table></figure>
+<h2 id="问题调试"><a href="#问题调试" class="headerlink" title="问题调试"></a>问题调试</h2><p>如果配置好之后不能正常连接应该怎么查找故障？这里介绍 linux 中常见的命令来辅助定位故障。</p>
+<h3 id="确认端口已经监听"><a href="#确认端口已经监听" class="headerlink" title="确认端口已经监听"></a>确认端口已经监听</h3><p>上述 ss.config 配置文件中，我们使用了 4433 端口作为监听端口，因此我们使用网络调试命令查看端口是否正常打开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -tpn</span><br></pre></td></tr></table></figure>
+<p>netstat 命令可以查看当前系统网络连接的状况，其中四个参数的含义如下：</p>
+<ul>
+<li>-t 代表查找 TCP 的通信连接，因为 Shadowsocks 的服务是基于 TCP 协议。</li>
+<li>参数 -p 代表显示对应端口占用的程序。</li>
+<li>参数 -n 代表以数字的形式显示端口号码，这里我们需要寻找 4433 端口是否存在。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">myss@myss:~$ netstat -tnp</span><br><span class="line">(No info could be read for &quot;-p&quot;: geteuid()=1000 but you should be root.)</span><br><span class="line">Active Internet connections (w/o servers)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name  TIME_WAIT   -               </span><br><span class="line">tcp        0    460 10.0.0.4:22             183.195.251.236:56598   ESTABLISHED -               </span><br><span class="line">tcp        0      0 10.0.0.4:4433           58.196.146.219:59475        TIME_WAIT   -</span><br></pre></td></tr></table></figure>
+<p>如上所示，4433端口已经处于 TCP 的等待状态，说明端口已经正常打开，端口没有问题。如果没有寻找到 4433 端口，那么说明 ssserver 的服务没有正常启动。可以按照下述方法，动态的查看 ssserver 的日志。</p>
+<h3 id="使用交互式方式查看日志"><a href="#使用交互式方式查看日志" class="headerlink" title="使用交互式方式查看日志"></a>使用交互式方式查看日志</h3><p>我们去掉 -d 参数，直接启动 ssserver，这样可以查看启动时候的日志，根据提示的错误信息，我们可以针对性的解决问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c ~/ss.config</span><br></pre></td></tr></table></figure>
+<p>2017-01-06</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://xiaoningliu.com/2017/01/06/shadowsocks/" data-id="cixlxwo24000hgv78qygub46b" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2017/01/06/shadowsocks/" data-title="Shadowsocks on Ubuntu 16" data-url="http://xiaoningliu.com/2017/01/06/shadowsocks/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/113474616907651764462" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/xiaoningliu/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/xiaoningliu92" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2016/03/27/常见算法/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">常见算法</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/06/shadowsocks/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://wechatair.azureedge.net/wp-content/uploads/2017/01/unnamed.png)" alt="Shadowsocks on Ubuntu 16" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/工具/">工具</a></p>
+                            <p class="item-title"><a href="/2017/01/06/shadowsocks/" class="title">Shadowsocks on Ubuntu 16</a></p>
+                            <p class="item-date"><time datetime="2017-01-06T11:38:00.000Z" itemprop="datePublished">2017-01-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/27/常见算法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ec4.images-amazon.com/images/I/51MaClWICNL._SX350_BO1,204,203,200_.jpg)" alt="常见算法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/2016/03/27/常见算法/" class="title">常见算法</a></p>
+                            <p class="item-date"><time datetime="2016-03-27T13:45:39.000Z" itemprop="datePublished">2016-03-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/25/网络基本/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://coolshell.cn//wp-content/uploads/2014/05/tcp_open_close.jpg)" alt="网络基本知识" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/网络/">网络</a></p>
+                            <p class="item-title"><a href="/2016/03/25/网络基本/" class="title">网络基本知识</a></p>
+                            <p class="item-date"><time datetime="2016-03-25T04:05:21.000Z" itemprop="datePublished">2016-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/25/CPP基础/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img005.hc360.cn/g7/M03/9C/A9/wKhQtFNE6VeEaALDAAAAAJHYSdw491.jpg)" alt="C++基础" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
+                            <p class="item-title"><a href="/2016/03/25/CPP基础/" class="title">C++基础</a></p>
+                            <p class="item-date"><time datetime="2016-03-25T02:56:58.000Z" itemprop="datePublished">2016-03-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/23/CPP标准库/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://img.wdjimg.com/mms/icon/v1/8/64/72c6d9759d14a5442bcb414e961aa648_256_256.png)" alt="C++标准库小记" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
+                            <p class="item-title"><a href="/2016/03/23/CPP标准库/" class="title">C++标准库小记</a></p>
+                            <p class="item-date"><time datetime="2016-03-23T02:11:17.000Z" itemprop="datePublished">2016-03-23</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GFW/">GFW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Great-File-Wall/">Great File Wall</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDP/">UDP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/构造函数/">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标准库/">标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学上网/">科学上网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类/">类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻墙/">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自启动/">自启动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重载函数/">重载函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/GFW/" style="font-size: 10px;">GFW</a> <a href="/tags/Great-File-Wall/" style="font-size: 10px;">Great File Wall</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/UDP/" style="font-size: 10px;">UDP</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 15px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 15px;">复杂度</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/构造函数/" style="font-size: 10px;">构造函数</a> <a href="/tags/标准库/" style="font-size: 10px;">标准库</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/科学上网/" style="font-size: 10px;">科学上网</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/类/" style="font-size: 10px;">类</a> <a href="/tags/网络/" style="font-size: 12.5px;">网络</a> <a href="/tags/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tags/自启动/" style="font-size: 10px;">自启动</a> <a href="/tags/虚函数/" style="font-size: 10px;">虚函数</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/重载函数/" style="font-size: 10px;">重载函数</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://facelarge.com">聚惠家</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.nilhang.com">尼艾航</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 刘晓宁</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'xiaoningliu'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

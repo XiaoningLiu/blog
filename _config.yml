@@ -71,3 +71,9 @@ deploy:
   type: git
   repository: https://github.com/XiaoningLiu/blog.git
   branch: gh-pages
+
+# hexo sitemap网站地图
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

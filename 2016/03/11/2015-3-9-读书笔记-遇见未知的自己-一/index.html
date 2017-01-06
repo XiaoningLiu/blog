@@ -26,35 +26,23 @@
     
 
     
+        <link rel="alternate" href="/" title="刘晓宁的博客" type="application/atom+xml" />
+    
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
-    
-    
-    
-        <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?8d0a95a57014160eb5ff2b6c5db1ac90# enter Baidu Analytics hash key";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
     
 
 </head>
@@ -87,25 +75,46 @@ var _hmt = _hmt || [];
                                         <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工具/">工具</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/aboutme/">关于</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
-    <input name="wd" type="text" class="search-form-input" placeholder="搜索" />
-</form>
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
 <script>
-(function ($) {
-    $('.search-form').on('submit', function (e) {
-        var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:xiaoningliu.com ' + keyword;
-        return false;
-    });
-})(jQuery);
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
+<script src="/js/insight.js"></script>
 
 </div>
                         </nav>
@@ -139,12 +148,15 @@ var _hmt = _hmt || [];
 
             </header>
         
-        <div class="article-subtitle">
-            <a href="/2016/03/11/2015-3-9-读书笔记-遇见未知的自己-一/" class="article-date">
+        
+            <div class="article-subtitle">
+                <a href="/2016/03/11/2015-3-9-读书笔记-遇见未知的自己-一/" class="article-date">
     <time datetime="2016-03-11T15:20:04.000Z" itemprop="datePublished">2016-03-11</time>
 </a>
-            
-        </div>
+                
+            </div>
+        
+        
         <div class="article-entry" itemprop="articleBody">
             <h3 id="读书笔记-遇见未知的自己-前言"><a href="#读书笔记-遇见未知的自己-前言" class="headerlink" title="读书笔记 遇见未知的自己 前言"></a>读书笔记 遇见未知的自己 前言</h3><h5 id="2015年03月09日"><a href="#2015年03月09日" class="headerlink" title="2015年03月09日"></a>2015年03月09日</h5><h4 id="鸡汤不好喝"><a href="#鸡汤不好喝" class="headerlink" title="鸡汤不好喝"></a>鸡汤不好喝</h4><p>不知从什么时候，心灵鸡汤一类的书越来越不受欢迎，也好像是形成了一种风潮，看到朋友圈、微博上别人转发的”永远要保持奋斗”,”成功职场必备的XX技能”此类励志贴,如果不嗤之以鼻就显示不出自己的品味或高尚。或者也会对家里的老爸老妈好言相劝，让其不要用此类帖子来刷自己的屏。</p>
 <p>甚至在以高素质著称的的知识分享平台“知乎“上，有人提到这个问题“为什么心灵鸡汤如此的不受欢迎？”受到很多人的热议。</p>
@@ -184,7 +196,7 @@ var _hmt = _hmt || [];
 
 
 
-    <a data-url="http://xiaoningliu.com/2016/03/11/2015-3-9-读书笔记-遇见未知的自己-一/" data-id="cixlxwo1e0001gv78jvbqm77d" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/2016/03/11/2015-3-9-读书笔记-遇见未知的自己-一/" data-id="cixlz048o0001l1786zbynxqd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -293,6 +305,7 @@ var _hmt = _hmt || [];
     
     </section>
 
+
                         </div>
                     </section>
                     <aside id="sidebar">
@@ -394,6 +407,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -413,6 +427,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -432,6 +447,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -451,6 +467,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -470,6 +487,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -542,6 +560,10 @@ var _hmt = _hmt || [];
                         <a href="http://www.nilhang.com">尼艾航</a>
                     </li>
                 
+                    <li>
+                        <a href="http://wechatair.com">微信小程序在线</a>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -584,13 +606,17 @@ var _hmt = _hmt || [];
 
 
 
-    
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
-    
 
     
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
-        <script src="/vendor/scrollLoading/main.js"></script>
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
     
 
 

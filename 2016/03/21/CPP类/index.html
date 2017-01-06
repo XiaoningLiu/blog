@@ -6,7 +6,7 @@
     <title>C++类相关要点 | 刘晓宁的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="C++,面试,类,重载函数,构造函数,虚函数" />
+        <meta name="keywords" content="面试,C++,类,重载函数,构造函数,虚函数" />
     
     <meta name="description" content="C++类相关要点，构造函数，重载函数">
 <meta property="og:type" content="article">
@@ -23,35 +23,23 @@
     
 
     
+        <link rel="alternate" href="/" title="刘晓宁的博客" type="application/atom+xml" />
+    
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
-    
-    
-    
-        <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?8d0a95a57014160eb5ff2b6c5db1ac90# enter Baidu Analytics hash key";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
     
 
 </head>
@@ -84,25 +72,46 @@ var _hmt = _hmt || [];
                                         <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工具/">工具</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/aboutme/">关于</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
-    <input name="wd" type="text" class="search-form-input" placeholder="搜索" />
-</form>
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
 <script>
-(function ($) {
-    $('.search-form').on('submit', function (e) {
-        var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:xiaoningliu.com ' + keyword;
-        return false;
-    });
-})(jQuery);
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
+<script src="/js/insight.js"></script>
 
 </div>
                         </nav>
@@ -136,14 +145,17 @@ var _hmt = _hmt || [];
 
             </header>
         
-        <div class="article-subtitle">
-            <a href="/2016/03/21/CPP类/" class="article-date">
+        
+            <div class="article-subtitle">
+                <a href="/2016/03/21/CPP类/" class="article-date">
     <time datetime="2016-03-21T04:45:12.000Z" itemprop="datePublished">2016-03-21</time>
 </a>
-            
+                
     <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/构造函数/">构造函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类/">类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚函数/">虚函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重载函数/">重载函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
 
-        </div>
+            </div>
+        
+        
         <div class="article-entry" itemprop="articleBody">
             <h1 id="C-类相关要点"><a href="#C-类相关要点" class="headerlink" title="C++类相关要点"></a>C++类相关要点</h1><p><img src="http://image.coolapk.com/apk_logo/2014/1113/257251_1415867697_4166.png" alt="C++类"></p>
 <h2 id="空间"><a href="#空间" class="headerlink" title="空间"></a>空间</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> a&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> b&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> c:<span class="keyword">public</span> a</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> d:<span class="keyword">public</span> b,<span class="keyword">public</span> c&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// g++ class.cpp -m32</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(a)"</span>&lt;&lt;<span class="keyword">sizeof</span>(a)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 1byte</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(b)"</span>&lt;&lt;<span class="keyword">sizeof</span>(b)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 1byte</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(c)"</span>&lt;&lt;<span class="keyword">sizeof</span>(c)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 包含虚函数指针4bytes</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"sizeof(d)"</span>&lt;&lt;<span class="keyword">sizeof</span>(d)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 包含c的虚函数指针4bytes</span></span><br></pre></td></tr></table></figure>
@@ -162,7 +174,7 @@ var _hmt = _hmt || [];
 
 
 
-    <a data-url="http://xiaoningliu.com/2016/03/21/CPP类/" data-id="cixlxwo1s0008gv78xqguxok1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/2016/03/21/CPP类/" data-id="cixlz049l000hl1782c4tf2xm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -271,6 +283,7 @@ var _hmt = _hmt || [];
     
     </section>
 
+
                         </div>
                     </section>
                     <aside id="sidebar">
@@ -372,6 +385,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -391,6 +405,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -410,6 +425,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -429,6 +445,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -448,6 +465,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -520,6 +538,10 @@ var _hmt = _hmt || [];
                         <a href="http://www.nilhang.com">尼艾航</a>
                     </li>
                 
+                    <li>
+                        <a href="http://wechatair.com">微信小程序在线</a>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -562,13 +584,17 @@ var _hmt = _hmt || [];
 
 
 
-    
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
-    
 
     
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
-        <script src="/vendor/scrollLoading/main.js"></script>
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
     
 
 

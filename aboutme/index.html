@@ -19,35 +19,23 @@
     
 
     
+        <link rel="alternate" href="/" title="刘晓宁的博客" type="application/atom+xml" />
+    
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
-    
-    
-    
-        <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?8d0a95a57014160eb5ff2b6c5db1ac90# enter Baidu Analytics hash key";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
     
 
 </head>
@@ -80,25 +68,46 @@ var _hmt = _hmt || [];
                                         <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工具/">工具</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/aboutme/">关于</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
-    <input name="wd" type="text" class="search-form-input" placeholder="搜索" />
-</form>
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
 <script>
-(function ($) {
-    $('.search-form').on('submit', function (e) {
-        var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:xiaoningliu.com ' + keyword;
-        return false;
-    });
-})(jQuery);
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
+<script src="/js/insight.js"></script>
 
 </div>
                         </nav>
@@ -132,12 +141,8 @@ var _hmt = _hmt || [];
 
             </header>
         
-        <div class="article-subtitle">
-            <a href="/aboutme/index.html" class="article-date">
-    <time datetime="2016-03-11T15:03:56.000Z" itemprop="datePublished">2016-03-11</time>
-</a>
-            
-        </div>
+        
+        
         <div class="article-entry" itemprop="articleBody">
             <h3 id="刘晓宁"><a href="#刘晓宁" class="headerlink" title="刘晓宁"></a>刘晓宁</h3><h4 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h4><h5 id="微软"><a href="#微软" class="headerlink" title="微软"></a>微软</h5><h5 id="摩根"><a href="#摩根" class="headerlink" title="摩根"></a>摩根</h5><h4 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h4><h5 id="尼艾航"><a href="#尼艾航" class="headerlink" title="尼艾航"></a>尼艾航</h5><h5 id="聚惠家"><a href="#聚惠家" class="headerlink" title="聚惠家"></a>聚惠家</h5><h5 id="科研人"><a href="#科研人" class="headerlink" title="科研人"></a>科研人</h5>
         </div>
@@ -146,7 +151,7 @@ var _hmt = _hmt || [];
 
 
 
-    <a data-url="http://xiaoningliu.com/aboutme/index.html" data-id="cixlxwo1j0002gv78oscc86qx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/aboutme/index.html" data-id="cixlz048s0002l178i8ph8f7m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -255,6 +260,7 @@ var _hmt = _hmt || [];
     
     </section>
 
+
                         </div>
                     </section>
                     <aside id="sidebar">
@@ -333,6 +339,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -352,6 +359,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -371,6 +379,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -390,6 +399,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -409,6 +419,7 @@ var _hmt = _hmt || [];
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
@@ -481,6 +492,10 @@ var _hmt = _hmt || [];
                         <a href="http://www.nilhang.com">尼艾航</a>
                     </li>
                 
+                    <li>
+                        <a href="http://wechatair.com">微信小程序在线</a>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -523,13 +538,17 @@ var _hmt = _hmt || [];
 
 
 
-    
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
-    
 
     
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
-        <script src="/vendor/scrollLoading/main.js"></script>
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
     
 
 

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>severless 无服务架构简析2 - 架构设计 | 刘晓宁的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="severless,无服务,无服务架构,function" />
+    
+    <meta name="description" content="无服务架构简析2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="severless 无服务架构简析2 - 架构设计">
+<meta property="og:url" content="http://xiaoningliu.com/2017/01/08/severless2/index.html">
+<meta property="og:site_name" content="刘晓宁的博客">
+<meta property="og:description" content="无服务架构简析2">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNbRwgw1fbijnwf6roj315e0q3q9l.jpg">
+<meta property="og:updated_time" content="2017-01-07T16:47:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="severless 无服务架构简析2 - 架构设计">
+<meta name="twitter:description" content="无服务架构简析2">
+<meta name="twitter:image" content="https://ww2.sinaimg.cn/large/006tNbRwgw1fbijnwf6roj315e0q3q9l.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="刘晓宁的博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Let&#39;s run for a walk!</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工具/">工具</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/架构/">架构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/架构/">架构</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-severless2" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        severless 无服务架构简析2 - 架构设计
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/01/08/severless2/" class="article-date">
+    <time datetime="2017-01-07T16:36:01.000Z" itemprop="datePublished">2017-01-08</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/severless/">severless</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/无服务/">无服务</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/无服务架构/">无服务架构</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Serverless架构设计原则"><a href="#Serverless架构设计原则" class="headerlink" title="Serverless架构设计原则"></a>Serverless架构设计原则</h2><p>无服务器架构有五大原则，描述了一个理想的无服务器系统应该如何构建。在构建无服务器架构时，可以运用这些原则，帮助指导你做出决定。</p>
+<ol>
+<li>根据需要，使用计算服务来执行代码。</li>
+<li>编写单一用途的无状态函数。</li>
+<li>设计基于推送的、事件驱动的管道。</li>
+<li>创建更粗实、更强大的前端。</li>
+<li>拥抱第三方服务。</li>
+</ol>
+<p>无服务器架构是SOA概念的自然延伸。在无服务器架构中，所有自定义代码作为孤立的、独立的、常常细粒度的函数来编写和执行，这些函数在AWS Lambda之类的无状态计算服务中运行。开发人员可以编写函数，执行几乎任何常见的任务，比如读取和写入到数据源、调用函数以及执行计算。在比较复杂的情况下，开发人员可以构建更复杂的管道，编排多个函数的调用。可能会有这种场景：仍需要服务器来处理某个任务。然而，这种情况并不多见；作为开发人员，应该尽量避免运行服务器、与之交互。</p>
+<p>以下针对五大原则逐一进行解析。</p>
+<h3 id="根据需要使用计算服务执行代码"><a href="#根据需要使用计算服务执行代码" class="headerlink" title="根据需要使用计算服务执行代码"></a>根据需要使用计算服务执行代码</h3><p>无服务器架构是SOA概念的自然延伸。在无服务器架构中，所有自定义代码作为孤立的、独立的、常常细粒度的函数来编写和执行，这些函数在AWS Lambda之类的无状态计算服务中运行。开发人员可以编写函数，执行几乎任何常见的任务，比如读取和写入到数据源、调用函数以及执行计算。在比较复杂的情况下，开发人员可以构建更复杂的管道，编排多个函数的调用。可能会有这种场景：仍需要服务器来处理某个任务。然而，这种情况并不多见；作为开发人员，你应该尽量避免运行服务器、与之交互。</p>
+<h3 id="编写单一用途的无状态函数"><a href="#编写单一用途的无状态函数" class="headerlink" title="编写单一用途的无状态函数"></a>编写单一用途的无状态函数</h3><p>作为软件工程师，在设计函数时应该尽量着眼于单一职责原则（SRP）。单单处理某一项任务的函数更容易测试、运行稳定，而且带来的错误和意外的副作用比较少。通过以一种松散编排的方式将函数和服务组合起来，就能构建照样易于理解、易于管理的复杂后端系统。拥有明确定义的接口的细粒度函数也更有可能在无服务器架构里面被重复使用。</p>
+<p>为Lambda等计算服务编写的代码应该以无状态方式来构建。它不得假设：本地资源或进程会在当前的会话之后生存下去。无状态性功能很强大，因为它让平台得以迅速扩展，以处理数量不断变化的入站事件或请求。</p>
+<h3 id="设计基于推送的、事件驱动的管道"><a href="#设计基于推送的、事件驱动的管道" class="headerlink" title="设计基于推送的、事件驱动的管道"></a>设计基于推送的、事件驱动的管道</h3><p>可以构建满足任何用途的无服务器架构。系统可以一开始就构建成无服务器，也可以逐步重新设计现有的整体单一式应用程序，以便充分发挥这种架构的优势。最灵活、最强大的无服务器设计是事件驱动型的。图4显示了我们如何将亚马逊的简单存储服务（S3）、Lambda和Elastic Transcoder连接起来，构建一条事件驱动的、基于推送的管道。</p>
+<p>构建事件驱动的、基于推送的系统常常有望降低成本和复杂性（你不需要运行额外代码来轮询变更），可能让整个用户体验更流畅。不言而喻，虽然事件驱动的、基于推送的模式是个美好的目标，但它们并非在所有情况下都是适当的或可以实现的。有时候，你不得不实施一个Lambda函数来轮询事件源或按时间表运行。</p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNbRwgw1fbijnwf6roj315e0q3q9l.jpg" alt="基于推送的管道设计风格"></p>
+<p>在这个例子中，用户上传一段转码成不同格式的视频。上传创建了一个事件，从而触发了Lambda函数。该函数创建一个转码作业。转码作业提交给转码视频服务，新的视频创建后，被保存到另一个S3存储桶。保存新视频这个过程触发了另一个Lambda函数，该函数反过来更新数据库。数据库中一个新的条目触发了最后一个函数，该函数创建通知，并调用通知服务，实现调派。在这个例子中，所有函数和服务仅仅负责一个动作，整个编排易于调整。</p>
+<h3 id="创建更粗实、更强大的前端"><a href="#创建更粗实、更强大的前端" class="headerlink" title="创建更粗实、更强大的前端"></a>创建更粗实、更强大的前端</h3><p>有必要记住这一点，在Lambda中运行的自定义代码应该快速执行。较早终结的函数较便宜，因为Lambda定价基于请求数量、执行时间段以及分配的内存量。在Lambda中要处理的事务比较少来得比较省钱。此外，拥有调用服务的更丰富的前端有利于更好的用户体验。在线资源之间更少的环节和缩短的延迟会让人觉得应用程序的性能和可用性更好。</p>
+<p>数字签名的令牌让前端可以与不同的服务（包括数据库）直接进行通信。相比之下，在传统系统中，所有通信经由后端服务器来进行实现。让前端与服务进行通信有助于创建环节少得多、尽快获得所需资源的系统。</p>
+<p>然而，不是一切都可以或者都应该在前端执行。有些秘密无法交给客户端设备。处理信用卡或向订户发送电子邮件只能由不受最终用户控制的服务来完成。在这种情况下，就需要计算服务来协调动作、验证数据，并实施安全。</p>
+<p>另外要考虑的重要一点是一致性。如果前端负责写入到多个服务，可是中途出现故障，就会导致系统处于不一致的状态。在这种情况下，应该使用Lambda函数，因为它可以旨在从容地处理错误，重新尝试失败的操作。原子性和一致性在Lambda函数中实现起来和控制起来比在前端中容易得多。</p>
+<h3 id="拥抱第三方服务"><a href="#拥抱第三方服务" class="headerlink" title="拥抱第三方服务"></a>拥抱第三方服务</h3><p>如果第三方服务能提供价值、减少自定义代码，自然欢迎它们加入。如今，开发人员可以充分利用许多服务，从用于验证的Auth0服务，到用于支付处理的Stripe或Braintree服务，不一而足。只要考虑到价格、性能和可用性等因素，开发人员就应该试着采用第三方服务。开发人员花时间解决其领域独有的问题要比重复构建别人已经实施的功能有意义得多。如果已有了切实可行的第三方服务和API，别纯粹为了构建而构建。应站在巨人的肩上达到新的高度。</p>
+<h2 id="Serverless架构的推荐设计"><a href="#Serverless架构的推荐设计" class="headerlink" title="Serverless架构的推荐设计"></a>Serverless架构的推荐设计</h2><p>软件设计已从昔日代码在大型机上运行，变成如今在多层系统上运行：在许多设计中，表示层、数据层和应用/逻辑层具有重要地位。在每层里面，可能有多个逻辑层次处理某一功能或领域的特定方面。还有可能跨众多层次的横切组件（cross-cutting component），比如日志或异常处理系统。青睐分层可以理解。分层让开发人员得以将关注点分离开来，开发出更易维护的应用程序。</p>
+<p>但是，反过来也可能如此。层次太多可能导致效率低下。一个小小的变化常常带来连锁反应，导致开发人员修改整个系统中的每个层次，把大量的时间和精力花费在实施和测试上。层次数量越多，久而久之系统会变得越复杂、越笨拙。图4显示了具有多个层次的分层架构的一个例子。</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgw1fbijp10d9cj315g0rmag6.jpg" alt="图4：一个典型的三层应用程序通常由表示层、应用层和数据层组成。在每个层中，可能有多个层次，它们有特定的职责。开发人员可以选择各层次彼此如何联系。这可以是严格的自上而下的方式，也可以是一种松散的方式：各层次可以绕过紧邻的层次，与其他层次对话。层次的联系方式将影响性能、依赖项管理和应用程序的复杂性。然后还有横跨多个层次的功能――这叫作横切关注点（cross-cutting concern）"></p>
+<p>无服务器架构实际上有助于解决分层、非得更新太多对象这一问题。开发人员有机会消除或尽量减少层次，只要将系统分成多个功能，让前端得以安全地与服务、甚至数据库直接进行通信，如图5所示。这一切都可以以一种有组织的方式来实现，可以清楚地定义服务边界，防止意大利面条式实施和依赖项恶梦，让Lambda函数成为自治式，并且规划函数和服务如何交互。</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgw1fbijpfjibwj314y0oqdjk.jpg" alt="图5：在无服务器架构中，没有单一的传统后端。通过API网关，应用程序的前端直接与服务、数据库或计算函数进行联系。然而，有些服务必须隐藏在计算服务函数后面，额外的安全措施和验证可能在这里进行"></p>
+<p>无服务器方法解决不了所有问题，也无法消除系统的底层复杂性。然而，如果实施得当，它还是可以为减少、厘清和管理复杂性带来机会。精心规划的无服务器架构可以让开发人员更容易在将来做出变化，这对任何长期的应用程序来说都是一个重要因素。下一节将更详细地讨论服务的组织和编排。</p>
+<p>一些开发人员对于层次（layer）与层（tier）之间的区别分不太清楚。层是一种模块边界，它是为了隔离系统的主要组件而存在的。用户看得见的表示层与包括业务逻辑的应用层分开来。反过来，数据层是另一个独立的系统，负责数据的管理、持久化和访问。分组在一个层中的组件可能实际上驻留在不同的基础设施上。层次是逻辑片段，负责执行应用程序中特定的职责。每一层在里面可能有多个层次，负责功能的不同部分，比如域服务。</p>
+<h2 id="从现有应用转换到Serverless架构"><a href="#从现有应用转换到Serverless架构" class="headerlink" title="从现有应用转换到Serverless架构"></a>从现有应用转换到Serverless架构</h2><p>Serverless方法的一个优点是现有应用可以逐渐转换为Serverless架构。如果开发人员面对一个单一的代码库，他们可以逐渐分开，创建应用程序可以与之通信的Lambda函数。</p>
+<p>最好的方法是最初创建一个原型来测试，开发人员假设如果系统部分或全部无服务器的情况下系统将如何运行。遗留系统往往具有需要创造性解决方案进行和任何大规模的重构。因此将存在设计与转换中的妥协与过度，系统可能最终是一个混合，参见图6，但是整体系统可能会逐步的将一些方面使用Serverless和使用第三方服务，而不是继续使用传统架构，不再扩展或需要昂贵的基础架构运行。</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwgw1fbijq1njzaj31c10wm0zg.jpg" alt="图6：无服务器的架构不是一个全有或全无的命题。如果当前有在服务器上运行的传统应用程序，可以开始逐步提取组件并在隔离服务或计算功能中运行它们。 您可以将整体应用程序分离到各种基础架构即服务（IaaS），PaaS，容器，Lambda函数和第三方服务（如果它有帮助）"></p>
+<p>从传统的基于服务器的应用程序到可扩展的Serverless架构的过渡可能需要时间才能正确完成。它需要仔细和缓慢地进行，开发人员需要有一个良好的测试计划和一个伟大的DevOps战略作为开始。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://xiaoningliu.com/2017/01/08/severless2/" data-id="cixnhiouk000dzp78d9j42l53" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2017/01/08/severless2/" data-title="severless 无服务架构简析2 - 架构设计" data-url="http://xiaoningliu.com/2017/01/08/severless2/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="https://plus.google.com/u/0/113474616907651764462" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/xiaoningliu/" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/xiaoningliu92" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/01/08/severless3/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            severless 无服务架构简析3 - Serverless架构优劣分析
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/01/08/severless/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">severless 无服务架构简析1</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/08/severless5/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://ww4.sinaimg.cn/large/006tNbRwgw1fbik7svz49j30yw0gcdjr.jpg)" alt="severless 无服务架构简析5 - Serverless业界发展与应用" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless5/" class="title">severless 无服务架构简析5 - Serverless业界发展与应用</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:45:01.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/08/severless4/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://ww1.sinaimg.cn/large/006tNbRwgw1fbik71348fj30uc0a6tbq.jpg)" alt="severless 无服务架构简析4 - 应用场景分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless4/" class="title">severless 无服务架构简析4 - 应用场景分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:40:01.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/08/severless3/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://ww4.sinaimg.cn/large/006tNbRwgw1fbijrwie3ej31c10o7jwd.jpg)" alt="severless 无服务架构简析3 - Serverless架构优劣分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless3/" class="title">severless 无服务架构简析3 - Serverless架构优劣分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:37:01.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/08/severless2/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://ww2.sinaimg.cn/large/006tNbRwgw1fbijnwf6roj315e0q3q9l.jpg)" alt="severless 无服务架构简析2 - 架构设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless2/" class="title">severless 无服务架构简析2 - 架构设计</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:36:01.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/08/severless/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://ww2.sinaimg.cn/large/006tNbRwgw1fbijhs09c1j318c0h9jvc.jpg)" alt="severless 无服务架构简析1" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless/" class="title">severless 无服务架构简析1</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:35:01.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构/">架构</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GFW/">GFW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Great-File-Wall/">Great File Wall</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDP/">UDP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/function/">function</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/severless/">severless</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优劣分析/">优劣分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无服务/">无服务</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无服务架构/">无服务架构</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/构造函数/">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标准库/">标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学上网/">科学上网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类/">类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻墙/">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自启动/">自启动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重载函数/">重载函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 16px;">C++</a> <a href="/tags/GFW/" style="font-size: 10px;">GFW</a> <a href="/tags/Great-File-Wall/" style="font-size: 10px;">Great File Wall</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/UDP/" style="font-size: 10px;">UDP</a> <a href="/tags/function/" style="font-size: 18px;">function</a> <a href="/tags/severless/" style="font-size: 18px;">severless</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/优劣分析/" style="font-size: 10px;">优劣分析</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 14px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 14px;">复杂度</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/无服务/" style="font-size: 18px;">无服务</a> <a href="/tags/无服务架构/" style="font-size: 18px;">无服务架构</a> <a href="/tags/构造函数/" style="font-size: 10px;">构造函数</a> <a href="/tags/标准库/" style="font-size: 10px;">标准库</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/科学上网/" style="font-size: 10px;">科学上网</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 14px;">算法</a> <a href="/tags/类/" style="font-size: 10px;">类</a> <a href="/tags/网络/" style="font-size: 12px;">网络</a> <a href="/tags/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tags/自启动/" style="font-size: 10px;">自启动</a> <a href="/tags/虚函数/" style="font-size: 10px;">虚函数</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/重载函数/" style="font-size: 10px;">重载函数</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://facelarge.com">聚惠家</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.nilhang.com">尼艾航</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://wechatair.com">微信小程序在线</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 刘晓宁</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'xiaoningliu'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

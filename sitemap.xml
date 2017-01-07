@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xiaoningliu.com/2016/03/15/Linux%E5%BF%AB%E9%80%9F%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2017-01-07T17:06:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoningliu.com/2017/01/08/severless5/</loc>
+    
+    <lastmod>2017-01-07T17:03:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoningliu.com/2017/01/08/severless4/</loc>
+    
+    <lastmod>2017-01-07T17:03:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoningliu.com/2017/01/08/severless/</loc>
+    
+    <lastmod>2017-01-07T17:00:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoningliu.com/2017/01/08/severless3/</loc>
+    
+    <lastmod>2017-01-07T16:53:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoningliu.com/2017/01/08/severless2/</loc>
+    
+    <lastmod>2017-01-07T16:47:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xiaoningliu.com/2017/01/06/shadowsocks/</loc>
     
     <lastmod>2017-01-06T15:16:55.000Z</lastmod>
@@ -65,13 +107,6 @@
   </url>
   
   <url>
-    <loc>http://xiaoningliu.com/2016/03/15/Linux%E5%BF%AB%E9%80%9F%E7%AC%94%E8%AE%B0/</loc>
-    
-    <lastmod>2016-03-15T15:22:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xiaoningliu.com/2016/03/15/C_CPP%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F/</loc>
     
     <lastmod>2016-03-15T06:11:35.000Z</lastmod>
@@ -121,14 +156,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoningliu.com/love/jquery-1.7.1.min.js</loc>
+    <loc>http://xiaoningliu.com/love/jquery.min.js</loc>
     
     <lastmod>2016-03-10T06:25:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xiaoningliu.com/love/jquery.min.js</loc>
+    <loc>http://xiaoningliu.com/love/jquery-1.7.1.min.js</loc>
     
     <lastmod>2016-03-10T06:25:39.000Z</lastmod>
     

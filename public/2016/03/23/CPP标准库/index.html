@@ -23,35 +23,23 @@
     
 
     
+        <link rel="alternate" href="/" title="刘晓宁的博客" type="application/atom+xml" />
+    
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
-    
-    
-    
-        <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?8d0a95a57014160eb5ff2b6c5db1ac90# enter Baidu Analytics hash key";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
     
 
 </head>
@@ -81,28 +69,49 @@ var _hmt = _hmt || [];
                                     <a class="main-nav-list-link" href="/">主页</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/C/">C++</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工具/">工具</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/思考/">思考</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/架构/">架构</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/程序员健康指南/">程序员健康指南</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/网络/">网络</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/读书/">读书</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/aboutme/">关于</a>
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
                                 </li>
                             
                         </ul>
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form class="search-form" method="GET" action="https://www.baidu.com/s?">
-    <input name="wd" type="text" class="search-form-input" placeholder="搜索" />
-</form>
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
 <script>
-(function ($) {
-    $('.search-form').on('submit', function (e) {
-        var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:xiaoningliu.com ' + keyword;
-        return false;
-    });
-})(jQuery);
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
+<script src="/js/insight.js"></script>
 
 </div>
                         </nav>
@@ -136,17 +145,20 @@ var _hmt = _hmt || [];
 
             </header>
         
-        <div class="article-subtitle">
-            <a href="/2016/03/23/CPP标准库/" class="article-date">
+        
+            <div class="article-subtitle">
+                <a href="/2016/03/23/CPP标准库/" class="article-date">
     <time datetime="2016-03-23T02:11:17.000Z" itemprop="datePublished">2016-03-23</time>
 </a>
-            
+                
     <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/复杂度/">复杂度</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/标准库/">标准库</a></li></ul>
 
-        </div>
+            </div>
+        
+        
         <div class="article-entry" itemprop="articleBody">
             <h1 id="C-类相关要点"><a href="#C-类相关要点" class="headerlink" title="C++类相关要点"></a>C++类相关要点</h1><p><img src="http://img.wdjimg.com/mms/icon/v1/8/64/72c6d9759d14a5442bcb414e961aa648_256_256.png" alt="C++标准库"></p>
-<h2 id="set和unordered-Set"><a href="#set和unordered-Set" class="headerlink" title="set和unordered_Set"></a>set和unordered_Set</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">if</span> (s1.find(<span class="number">3</span>) != s1.end())</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;<span class="string">"Found it"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">  </span><br><span class="line"><span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">if</span> (s2.find(<span class="number">3</span>) != s2.end())</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;<span class="string">"Found it"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="set和unordered-Set"><a href="#set和unordered-Set" class="headerlink" title="set和unordered_Set"></a>set和unordered_Set</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</div><div class="line"><span class="keyword">if</span> (s1.find(<span class="number">3</span>) != s1.end())</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;<span class="string">"Found it"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">  </div><div class="line"><span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; s2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</div><div class="line"><span class="keyword">if</span> (s2.find(<span class="number">3</span>) != s2.end())</div><div class="line">  <span class="built_in">cout</span>&lt;&lt;<span class="string">"Found it"</span>&lt;&lt;<span class="built_in">endl</span>;</div></pre></td></tr></table></figure>
 <p>set.find() 的时间复杂度是O(nlog(n))，采用红黑树实现</p>
 <p>unordered_set.find() 的时间复杂度通常是常数，采用哈希实现，当哈希结果不好时会退化到线性</p>
 
@@ -156,7 +168,7 @@ var _hmt = _hmt || [];
 
 
 
-    <a data-url="http://xiaoningliu.com/2016/03/23/CPP标准库/" data-id="cipl3z8pi00054hcl623p8xcd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://xiaoningliu.com/2016/03/23/CPP标准库/" data-id="cixnhiou60002zp78h0mo1gt4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -265,6 +277,7 @@ var _hmt = _hmt || [];
     
     </section>
 
+
                         </div>
                     </section>
                     <aside id="sidebar">
@@ -359,95 +372,100 @@ var _hmt = _hmt || [];
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/03/27/常见算法/" class="thumbnail">
+                            <a href="/2017/01/08/severless5/" class="thumbnail">
     
     
-        <span style="background-image:url(http://ec4.images-amazon.com/images/I/51MaClWICNL._SX350_BO1,204,203,200_.jpg)" alt="常见算法" class="thumbnail-image"></span>
+        <span style="background-image:url(https://ww4.sinaimg.cn/large/006tNbRwgw1fbik7svz49j30yw0gcdjr.jpg)" alt="severless 无服务架构简析5 - Serverless业界发展与应用" class="thumbnail-image"></span>
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
-                            <p class="item-title"><a href="/2016/03/27/常见算法/" class="title">常见算法</a></p>
-                            <p class="item-date"><time datetime="2016-03-27T13:45:39.000Z" itemprop="datePublished">2016-03-27</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless5/" class="title">severless 无服务架构简析5 - Serverless业界发展与应用</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:45:01.000Z" itemprop="datePublished">2017-01-08</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/03/25/网络基本/" class="thumbnail">
+                            <a href="/2017/01/08/severless4/" class="thumbnail">
     
     
-        <span style="background-image:url(http://coolshell.cn//wp-content/uploads/2014/05/tcp_open_close.jpg)" alt="网络基本知识" class="thumbnail-image"></span>
+        <span style="background-image:url(https://ww1.sinaimg.cn/large/006tNbRwgw1fbik71348fj30uc0a6tbq.jpg)" alt="severless 无服务架构简析4 - 应用场景分析" class="thumbnail-image"></span>
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/网络/">网络</a></p>
-                            <p class="item-title"><a href="/2016/03/25/网络基本/" class="title">网络基本知识</a></p>
-                            <p class="item-date"><time datetime="2016-03-25T04:05:21.000Z" itemprop="datePublished">2016-03-25</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless4/" class="title">severless 无服务架构简析4 - 应用场景分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:40:01.000Z" itemprop="datePublished">2017-01-08</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/03/25/CPP基础/" class="thumbnail">
+                            <a href="/2017/01/08/severless3/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img005.hc360.cn/g7/M03/9C/A9/wKhQtFNE6VeEaALDAAAAAJHYSdw491.jpg)" alt="C++基础" class="thumbnail-image"></span>
+        <span style="background-image:url(https://ww4.sinaimg.cn/large/006tNbRwgw1fbijrwie3ej31c10o7jwd.jpg)" alt="severless 无服务架构简析3 - Serverless架构优劣分析" class="thumbnail-image"></span>
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
-                            <p class="item-title"><a href="/2016/03/25/CPP基础/" class="title">C++基础</a></p>
-                            <p class="item-date"><time datetime="2016-03-25T02:56:58.000Z" itemprop="datePublished">2016-03-25</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless3/" class="title">severless 无服务架构简析3 - Serverless架构优劣分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:37:01.000Z" itemprop="datePublished">2017-01-08</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/03/23/CPP标准库/" class="thumbnail">
+                            <a href="/2017/01/08/severless2/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img.wdjimg.com/mms/icon/v1/8/64/72c6d9759d14a5442bcb414e961aa648_256_256.png)" alt="C++标准库小记" class="thumbnail-image"></span>
+        <span style="background-image:url(https://ww2.sinaimg.cn/large/006tNbRwgw1fbijnwf6roj315e0q3q9l.jpg)" alt="severless 无服务架构简析2 - 架构设计" class="thumbnail-image"></span>
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
-                            <p class="item-title"><a href="/2016/03/23/CPP标准库/" class="title">C++标准库小记</a></p>
-                            <p class="item-date"><time datetime="2016-03-23T02:11:17.000Z" itemprop="datePublished">2016-03-23</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless2/" class="title">severless 无服务架构简析2 - 架构设计</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:36:01.000Z" itemprop="datePublished">2017-01-08</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/03/21/CPP类/" class="thumbnail">
+                            <a href="/2017/01/08/severless/" class="thumbnail">
     
     
-        <span style="background-image:url(http://image.coolapk.com/apk_logo/2014/1113/257251_1415867697_4166.png)" alt="C++类相关要点" class="thumbnail-image"></span>
+        <span style="background-image:url(https://ww2.sinaimg.cn/large/006tNbRwgw1fbijhs09c1j318c0h9jvc.jpg)" alt="severless 无服务架构简析1" class="thumbnail-image"></span>
     
     
 </a>
+
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/C/">C++</a></p>
-                            <p class="item-title"><a href="/2016/03/21/CPP类/" class="title">C++类相关要点</a></p>
-                            <p class="item-date"><time datetime="2016-03-21T04:45:12.000Z" itemprop="datePublished">2016-03-21</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/架构/">架构</a></p>
+                            <p class="item-title"><a href="/2017/01/08/severless/" class="title">severless 无服务架构简析1</a></p>
+                            <p class="item-date"><time datetime="2017-01-07T16:35:01.000Z" itemprop="datePublished">2017-01-08</time></p>
                         </div>
                     </li>
                 
@@ -460,7 +478,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/思考/">思考</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构/">架构</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序员健康指南/">程序员健康指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -470,7 +488,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">12</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">12</span></li></ul>
         </div>
     </div>
 
@@ -480,7 +498,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDP/">UDP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/构造函数/">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标准库/">标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类/">类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重载函数/">重载函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">7</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GFW/">GFW</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Great-File-Wall/">Great File Wall</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDP/">UDP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/function/">function</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/severless/">severless</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/">shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优劣分析/">优劣分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘/">备忘</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/复杂度/">复杂度</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件/">文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无服务/">无服务</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无服务架构/">无服务架构</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/构造函数/">构造函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/标准库/">标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游泳/">游泳</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学上网/">科学上网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/程序员/">程序员</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔记/">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/类/">类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/翻墙/">翻墙</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自启动/">自启动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运动/">运动</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重载函数/">重载函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试/">面试</a><span class="tag-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -490,7 +508,7 @@ var _hmt = _hmt || [];
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 16.67px;">C++</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/UDP/" style="font-size: 10px;">UDP</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 13.33px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 13.33px;">复杂度</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/构造函数/" style="font-size: 10px;">构造函数</a> <a href="/tags/标准库/" style="font-size: 10px;">标准库</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 13.33px;">算法</a> <a href="/tags/类/" style="font-size: 10px;">类</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/虚函数/" style="font-size: 10px;">虚函数</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/重载函数/" style="font-size: 10px;">重载函数</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+            <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 16px;">C++</a> <a href="/tags/GFW/" style="font-size: 10px;">GFW</a> <a href="/tags/Great-File-Wall/" style="font-size: 10px;">Great File Wall</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/UDP/" style="font-size: 10px;">UDP</a> <a href="/tags/function/" style="font-size: 18px;">function</a> <a href="/tags/severless/" style="font-size: 18px;">severless</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/优劣分析/" style="font-size: 10px;">优劣分析</a> <a href="/tags/健康/" style="font-size: 10px;">健康</a> <a href="/tags/备忘/" style="font-size: 14px;">备忘</a> <a href="/tags/复杂度/" style="font-size: 14px;">复杂度</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/文件/" style="font-size: 10px;">文件</a> <a href="/tags/无服务/" style="font-size: 18px;">无服务</a> <a href="/tags/无服务架构/" style="font-size: 18px;">无服务架构</a> <a href="/tags/构造函数/" style="font-size: 10px;">构造函数</a> <a href="/tags/标准库/" style="font-size: 10px;">标准库</a> <a href="/tags/树/" style="font-size: 10px;">树</a> <a href="/tags/游泳/" style="font-size: 10px;">游泳</a> <a href="/tags/科学上网/" style="font-size: 10px;">科学上网</a> <a href="/tags/程序员/" style="font-size: 10px;">程序员</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/算法/" style="font-size: 14px;">算法</a> <a href="/tags/类/" style="font-size: 10px;">类</a> <a href="/tags/网络/" style="font-size: 12px;">网络</a> <a href="/tags/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tags/自启动/" style="font-size: 10px;">自启动</a> <a href="/tags/虚函数/" style="font-size: 10px;">虚函数</a> <a href="/tags/运动/" style="font-size: 10px;">运动</a> <a href="/tags/重载函数/" style="font-size: 10px;">重载函数</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
         </div>
     </div>
 
@@ -514,6 +532,10 @@ var _hmt = _hmt || [];
                         <a href="http://www.nilhang.com">尼艾航</a>
                     </li>
                 
+                    <li>
+                        <a href="http://wechatair.com">微信小程序在线</a>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -534,7 +556,7 @@ var _hmt = _hmt || [];
                 <h1 class="logo-wrap">
                     <a href="/" class="logo"></a>
                 </h1>
-                <p>&copy; 2016 刘晓宁</p>
+                <p>&copy; 2017 刘晓宁</p>
                 <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
             </div>
         </div>
@@ -556,13 +578,17 @@ var _hmt = _hmt || [];
 
 
 
-    
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
-    
 
     
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
-        <script src="/vendor/scrollLoading/main.js"></script>
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
     
 
 

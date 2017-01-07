@@ -13,7 +13,7 @@ tags:
 
 ### Linux快速笔记
 
-![Linux](http://www.6188.com/upload_6188s/Small_paper/xitong/3174/s800/linux_014.jpg)
+![Linux](https://ww2.sinaimg.cn/large/006tNbRwgw1fbik9pxmh0j30iw082q3h.jpg)
 
 `ln -s source linkName`
 

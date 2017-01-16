@@ -16,9 +16,20 @@
 
 ![腾讯云免费证书](https://ww3.sinaimg.cn/large/006tNbRwgw1fbii23m781j30u20py0u5.jpg)
 
+【腾讯云】尊敬的用户：您名下域名www.wechatair.com的TrustAsia DV SSL CA - G5（1年）证书申请已审核通过。请访问腾讯云证书管理控制台查看。感谢您对腾讯云的支持！
 
+需要注意的是，在申请证书的过程中，需要填入密码。虽然不是必填项，但是在Azure上传证书的过程中，密码确是必填项。
 
 ## 性能优化
+
+### 性能调优工具
+
+#### 使用工具分析站点速度
+[Yahoo YSlow](http://yslow.org/)，可以安装Chrome插件，动态分析站点加载速度。
+
+#### 改进站点速度的最佳方法
+
+https://developer.yahoo.com/performance/rules.html
 
 ### CDN 静态资源浏览器缓存优化
 

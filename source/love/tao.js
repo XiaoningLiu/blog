@@ -28,22 +28,22 @@ obj.style.left = x0 - w;
 }
 }
 function CObj(N,img,w,h){
-this.obj = document.createElement("img");
-this.obj.src = img.src;
-this.obj.style.position = "fixed";
-this.obj.style.left = -1000;
-document.body.appendChild(this.obj);
-this.N  = N;
-this.x0 = 0;
-this.y0 = -1000;
-this.v  = 1 + Math.round((80 / h) * Math.random());
-this.p  = 1 + Math.round((w / 8) * Math.random());
-this.xx = 0;
-this.yy = 0;
-this.ec = 0;
-this.w  = w;
-this.h  = h;
-this.movbulb = movbulb;
+	this.obj = document.createElement("img");
+	this.obj.src = img.src;
+	this.obj.style.position = "fixed";
+	this.obj.style.left = -1000;
+	document.body.appendChild(this.obj);
+	this.N  = N;
+	this.x0 = 0;
+	this.y0 = -1000;
+	this.v  = 1 + Math.round((80 / h) * Math.random());
+	this.p  = 1 + Math.round((w / 8) * Math.random());
+	this.xx = 0;
+	this.yy = 0;
+	this.ec = 0;
+	this.w  = w;
+	this.h  = h;
+	this.movbulb = movbulb;
 }
 function resize(){
 nx = document.body.offsetWidth;
@@ -55,16 +55,18 @@ if (window.event) e = window.event;
 xm = document.body.scrollLeft+(e.x || e.clientX);
 ym = document.body.scrollTop+(e.y || e.clientY);
 }
+
 function run(){
-for(i in object)object[i].movbulb();
-setTimeout(run, 16);
+	for(i in object)
+		object[i].movbulb();
+	setTimeout(run, 16);
 }
 onload = function() {
-PIC = document.getElementById("bubbles").getElementsByTagName("img");
-resize();
-for(nbf=0;nbf<nbfm;nbf++){
-sf = PIC[nbf%PIC.length];
-object[nbf] = new CObj(nbf,sf,sf.width/2,sf.height/2);
-}
-run();
+	PIC = document.getElementById("bubbles").getElementsByTagName("img");
+	resize();
+	for(nbf=0; nbf < nbfm; nbf++){
+		sf = PIC[nbf%PIC.length];
+		object[nbf] = new CObj(nbf,sf,sf.width/2,sf.height/2);
+	}
+	run();
 }
